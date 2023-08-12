@@ -45,13 +45,18 @@
 
                 <!-- Add your content here on the right side of the sidebar -->
         <div class="content-right">
-
-                <br>
+                <div class="header">
+                <div class=container mt-5>
+                        <div class="row g-3">
+                            <div class="col-md-12 form-group">
+                                <label for="name">เลขที่ทั่วไป</label>
+                                <input type="text" class="form-control" id="hn" name="hn" placeholder="เลขที่ทั่วไป" disabled>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
                 <div class="container mt-4">
-
-                    <div class="form-outline mb-4">
-                        <h3 id="hn">เลขที่ทั่วไป : </h3>
-                    </div>
                     <div id="datatable">
                     </div>    
                     <br><br>

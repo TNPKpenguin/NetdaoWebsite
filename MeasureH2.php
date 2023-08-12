@@ -50,36 +50,9 @@
         <div class="header">
             <div class=container mt-5>
                     <div class="row g-3">
-                        <div class="col-md-9 form-group">
+                        <div class="col-md-12 form-group">
                             <label for="name">เลขที่ทั่วไป</label>
                             <input type="text" class="form-control" id="hn" name="hn" placeholder="เลขที่ทั่วไป">
-                        </div>
-
-                        <div class="bootstrap-iso" style="background-color: rgb(82, 206, 255)">
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-md-0 col-sm-0 col-xs-0">
-                                            <div class="form-group ">
-                                                <label class="control-label col-sm-2 requiredField" for="date" style="padding-left:33px">
-                                                    Date
-                                                </label>
-                                            <div class="col-sm-16" style="padding-left:18px">
-                                                <div class="input-group">
-                                                    <div class="input-group-addon">
-                                                        <i class="fa fa-calendar"></i>
-                                                    </div>
-                                                <input class="form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text"/>
-                                                </div>
-                                            </div>
-                                            </div>
-                                                <div class="form-group">
-                                                    <div class="col-sm-10 col-sm-offset-2">
-                                                        <input name="_honey" style="display:none" type="text"/>
-                                                    </div>
-                                                </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -92,12 +65,12 @@
                         <div class="row g-3">
                             <div class="col-md-6 form-group">
                                 <label id="head-label" for="name">ชื่อ</label>
-                                <input class="w3-input" type="text" placeholder="" name="name">
+                                <input class="w3-input" type="text" placeholder="" name="name" disabled id="name">
                             </div>
 
                             <div class="col-md-6 form-group">
                                 <label id="head-label" for="name">นามสกุล</label>
-                                <input class="w3-input " type="text" placeholder="" name="lastname">
+                                <input class="w3-input " type="text" placeholder="" name="lastname" disabled id="lastname">
                             </div>
                         </div>
 
