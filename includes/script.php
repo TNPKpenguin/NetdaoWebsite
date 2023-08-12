@@ -4,6 +4,8 @@
     var amphureObject = $('#amphure');
     var districtObject = $('#district');
     var zip_code = $('zip_code');
+    var sytem_disease = $('#sytem_disease');
+    var name_disease = $('#name_disease');
 
     // on change province
     provinceObject.on('change', function(){
@@ -48,5 +50,25 @@
             document.getElementById('zip_code').value= result[0].zip_code;
         });
     });
+
+    //on change disease
+    sytem_disease.on('change',function(){
+
+        name_disease.html('<option value="">-</option>');
+
+        var id = $(this).val();
+
+        alert(id);
+
+        $.get('includes/get_namedisease.php?sym_pos=' + id, function(data){
+            var result = JSON.parse(data);
+
+            $.each(result, function(index, item){
+                districtObject.append(
+                    $('<option></option>').val(item.sym_name).html(item.sym_name)
+                );
+            });
+        });
+    })
 });
 </script>

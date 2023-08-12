@@ -113,10 +113,10 @@ date_default_timezone_set('Asia/Bangkok');
                         <!-- <label for="name">ระบบ</label> -->
                         <label for="system_name">ระบบ</label>
                         <div class="col-sm-12" id="day">
-                            <select class="form-control" id="inlineFormSelectPref" style="margin-bottom:20px; width:100%; height:35px" name="day">
+                            <select class="form-control" id="sytem_disease" style="margin-bottom:20px; width:100%; height:35px" name="day">
                                 <option selected disabled>-</option>
                                 <?php foreach ($query as $value) { ?>
-                                <option value="<?$value['sym_pos']?>"><?=$value['sym_pos']?></option>
+                                <option value="<?=$value['sym_pos']?>"><?=$value['sym_pos']?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -124,11 +124,7 @@ date_default_timezone_set('Asia/Bangkok');
                     <div class="form-group">
                         <label for="name">ชื่อโรค</label>
                         <div class="col-sm-12" id="day">
-                            <select class="form-control" id="inlineFormSelectPref" style="margin-bottom:20px; width:100%; height:35px" name="day">
-                                <option selected disabled>-</option>
-                                <?php foreach ($query2 as $value) { ?>
-                                <option value="<?$value['sym_name']?>"><?=$value['sym_name']?></option>
-                                <?php } ?>
+                            <select class="form-control" id="name_disease" style="margin-bottom:20px; width:100%; height:35px" name="day">
                             </select>
                         </div>
                     </div>
@@ -166,8 +162,11 @@ date_default_timezone_set('Asia/Bangkok');
 
   <!-- Link Bootstrap JS and jQuery -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="javascript/store.js"></script>
 </body>
 </html>
+
+<?php include('includes/script.php');?>
