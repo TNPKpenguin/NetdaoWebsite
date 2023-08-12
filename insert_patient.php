@@ -90,7 +90,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         header("Location: ../history.php");
         die();
     }catch(PDOException $e){
-        die("Query failed: ".$e->getMessage());
+        echo "error";
     }
     
 }else{
