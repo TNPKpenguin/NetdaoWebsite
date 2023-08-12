@@ -32,22 +32,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     
     
-    if (isset($_POST["aumphur"])) {
-        $aumphur = $_POST["aumphur"];
-        echo "aumphur Selected pre-name: " . $aumphur;
+    if (isset($_POST["amphure"])) {
+        $aumphur = $_POST["amphure"];
+        echo "aumphur Selected pre-name: " . $amphure;
     } else {
         echo "aumphur is not selected!";
     }
 
 
-    if (isset($_POST["tambon"])) {
-        $tambon = $_POST["tambon"];
+    if (isset($_POST["district"])) {
+        $tambon = $_POST["district"];
         echo "tambon Selected pre-name: " . $tambon;
     } else {
         echo "tambon is not selected!";
     }
 
-    $postcode = $_POST["postcode"];
+    $postcode = $_POST["zip_code"];
     $relationship = $_POST["relationship"];
     $relation_name = $_POST["relation_name"];
     $relation_lastname = $_POST["relation_lastname"];
@@ -90,7 +90,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         header("Location: ../history.php");
         die();
     }catch(PDOException $e){
-        die("Query failed: ".$e->getMessage());
+        echo "error";
     }
     
 }else{
