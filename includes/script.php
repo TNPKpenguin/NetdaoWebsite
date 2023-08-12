@@ -1,45 +1,53 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
-  $('#provinces').change(function() {
-    var id_province = $(this).val();
- 
-      $.ajax({
-      type: "POST",
-      url: "ajax_db.php",
-      data: {id:id_province,function:'provinces'},
-      success: function(data){
-          $('#amphures').html(data); 
-          $('#districts').html(' '); 
-          $('#districts').val(' ');  
-          $('#zip_code').val(' '); 
-      } 
+  $(function(){
+    var provinceObject = $('#province');
+    var amphureObject = $('#amphure');
+    var districtObject = $('#district');
+    var zip_code = $('zip_code');
+
+    // on change province
+    provinceObject.on('change', function(){
+        var provinceId = $(this).val();
+
+        amphureObject.html('<option value="">เลือกอำเภอ</option>');
+        districtObject.html('<option value="">เลือกตำบล</option>');
+
+        $.get('includes/get_amphure.php?province_id=' + provinceId, function(data){
+
+          const result = JSON.parse(data);
+            $.each(result, function(index, item){
+                amphureObject.append(
+                    $('<option></option>').val(item.code).html(item.name_th)
+                );
+            });
+        });
     });
-  });
- 
-  $('#amphures').change(function() { 
-    var id_amphures = $(this).val();
- 
-      $.ajax({
-      type: "POST",
-      url: "ajax_db.php",
-      data: {id:id_amphures,function:'amphures'},
-      success: function(data){
-          $('#districts').html(data);  
-      }
+
+    // on change amphure
+    amphureObject.on('change', function(){
+        var amphureId = $(this).val();
+
+        districtObject.html('<option value="">เลือกตำบล</option>');
+        
+        $.get('includes/get_district.php?district_code=' + amphureId, function(data){
+            var result = JSON.parse(data);
+            $.each(result, function(index, item){
+                districtObject.append(
+                    $('<option></option>').val(item.district_code).html(item.name_th)
+                );
+            });
+        });
     });
-  });
- 
-   $('#districts').change(function() {
-    var id_districts= $(this).val();
- 
-      $.ajax({
-      type: "POST",
-      url: "ajax_db.php",
-      data: {id:id_districts,function:'districts'},
-      success: function(data){
-          $('#zip_code').val(data)
-      }
+
+     // on change amphure
+     districtObject.on('change', function(){
+        var postId = $(this).val();
+        
+        $.get('includes/get_postcode.php?district_code=' + postId, function(data){
+            var result = JSON.parse(data);
+            document.getElementById('zip_code').value= result[0].zip_code;
+        });
     });
-  
-  });
+});
 </script>

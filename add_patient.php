@@ -211,26 +211,26 @@ date_default_timezone_set('Asia/Bangkok');
                     <div class="container">
                             <div class="form-group">
                             <label for="sel1">จังหวัด:</label>
-                                <select class="form-control" name="Ref_prov_id" id="provinces">
+                                <select class="form-control" name="Ref_prov_id" id="province">
                                         <option value="" selected disabled>-กรุณาเลือกจังหวัด-</option>
                                         <?php foreach ($query as $value) { ?>
-                                        <option value="<?$value['code']?>"><?=$value['name_th']?></option>
+                                        <option value="<?=$value['code']?>"><?=$value['name_th']?></option>
                                         <?php } ?>
                                 </select>
                             <br>
                         
                             <label for="sel1">อำเภอ:</label>
-                            <select class="form-control" name="Ref_dist_id" id="amphures">
+                            <select class="form-control" name="Ref_dist_id" id="amphure">
                             </select>
                             <br>
                         
                             <label for="sel1">ตำบล:</label>
-                            <select class="form-control" name="Ref_subdist_id" id="districts">
+                            <select class="form-control" name="Ref_subdist_id" id="district">
                             </select>
                             <br>
                         
                             <label for="sel1">รหัสไปรษณีย์:</label>
-                            <input type="text" name="zip_code" id="zip_code" class="form-control">
+                            <input type="text" name="zip_code" id="zip_code" class="form-control" readonly value="">
                                 <br>
                                 <a href="https://devtai.com/?cat=38"> <button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button></a>
                             </div>
@@ -365,3 +365,5 @@ date_default_timezone_set('Asia/Bangkok');
         </script>
     </body>
 </html>
+
+<?php include('includes/script.php');?>
