@@ -205,39 +205,44 @@ date_default_timezone_set('Asia/Bangkok');
                             <label id="head-label" for="address">ที่อยู่ปัจจุบัน</label>
                             <input class="w3-input" type="text" placeholder="" name="address">
                         </div>
-                    </div>
 
-                    <div class="row g-3">
-                    <div class="container">
+
+                        <div class="col-sm-3">
                             <div class="form-group">
-                            <label for="sel1">จังหวัด:</label>
-                                <select class="form-control" name="Ref_prov_id" id="province">
+                                <label for="sel1">จังหวัด:</label>
+                                <select class="form-control" name="province" id="province">
                                         <option value="" selected disabled>-กรุณาเลือกจังหวัด-</option>
                                         <?php foreach ($query as $value) { ?>
                                         <option value="<?=$value['code']?>"><?=$value['name_th']?></option>
                                         <?php } ?>
                                 </select>
-                            <br>
-                        
-                            <label for="sel1">อำเภอ:</label>
-                            <select class="form-control" name="Ref_dist_id" id="amphure">
-                            </select>
-                            <br>
-                        
-                            <label for="sel1">ตำบล:</label>
-                            <select class="form-control" name="Ref_subdist_id" id="district">
-                            </select>
-                            <br>
-                        
-                            <label for="sel1">รหัสไปรษณีย์:</label>
-                            <input type="text" name="zip_code" id="zip_code" class="form-control" readonly value="">
-                                <br>
-                                <a href="https://devtai.com/?cat=38"> <button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button></a>
                             </div>
                         </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                    <label for="sel1">อำเภอ:</label>
+                                    <select class="form-control" name="amphure" id="amphure">
+                                    </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="sel1">ตำบล:</label>
+                                <select class="form-control" name="district" id="district">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label for="sel1">รหัสไปรษณีย์:</label>
+                            <input type="text" name="zip_code" id="zip_code" class="form-control" readonly value="">
+                        </div>
+                    </div>
                     </div>    
+                    
             </div>
-        </div>
         
         <div class="third-box">
             <div class="container mt-5">
