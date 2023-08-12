@@ -82,7 +82,7 @@ date_default_timezone_set('Asia/Bangkok');
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
                                                 </div>
-                                            <input class="form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text"/>
+                                            <input class="form-control" id="date" name="date" placeholder="DD/MM/YYYY" type="text"/>
                                             </div>
                                         </div>
                                         </div>
@@ -149,7 +149,7 @@ date_default_timezone_set('Asia/Bangkok');
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
                                                 </div>
-                                            <input class="form-control" id="date2" name="date2" placeholder="MM/DD/YYYY" type="text"/>
+                                            <input class="form-control" id="date2" name="date2" placeholder="DD/MM/YYYY" type="text"/>
                                             </div>
                                         </div>
                                         </div>
@@ -339,26 +339,29 @@ date_default_timezone_set('Asia/Bangkok');
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
         <script>
+            var date = new Date();
+            var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+
             $(document).ready(function(){
                 var date_input=$('input[name="date"]'); //our date input has the name "date"
                 var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
                 date_input.datepicker({
-                    format: 'mm/dd/yyyy',
+                    format: 'dd/mm/yyyy',
                     container: container,
                     todayHighlight: true,
                     autoclose: true,
-                })
+                }).datepicker( 'setDate', today );
             })
 
             $(document).ready(function(){
                 var date_input=$('input[name="date2"]'); //our date input has the name "date"
                 var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
                 date_input.datepicker({
-                    format: 'mm/dd/yyyy',
+                    format: 'dd/mm/yyyy',
                     container: container,
                     todayHighlight: true,
                     autoclose: true,
-                })
+                }).datepicker( 'setDate', today );
             })
 
             $(document).ready(function () {
