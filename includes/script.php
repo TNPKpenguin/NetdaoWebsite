@@ -58,13 +58,12 @@
 
         var id = $(this).val();
 
-        alert(id);
-
         $.get('includes/get_namedisease.php?sym_pos=' + id, function(data){
-            var result = JSON.parse(data);
+
+            const result = JSON.parse(data);
 
             $.each(result, function(index, item){
-                districtObject.append(
+                name_disease.append(
                     $('<option></option>').val(item.sym_name).html(item.sym_name)
                 );
             });

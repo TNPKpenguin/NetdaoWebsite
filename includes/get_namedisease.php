@@ -6,8 +6,6 @@ date_default_timezone_set('Asia/Bangkok');
 
 $sql = "SELECT * FROM symptoms where sym_pos = '{$_GET['sym_pos']}'";
 
-echo "<script>console.log('{$sql}' );</script>";
-
 $query = mysqli_query($con, $sql);
 
 $json = array();
