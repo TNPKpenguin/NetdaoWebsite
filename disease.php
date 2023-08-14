@@ -64,7 +64,7 @@ date_default_timezone_set('Asia/Bangkok');
                         <div class="row g-3">
                             <div class="col-md-9 form-group">
                                 <label for="name">เลขที่ทั่วไป</label>
-                                <input type="text" class="form-control" id="name" placeholder="เลขที่ทั่วไป">
+                                <input type="text" class="form-control" name="hn" id="hn" placeholder="เลขที่ทั่วไป" readonly>
                             </div>
 
                             <div class="bootstrap-iso" style="background-color: rgb(82, 206, 255)">
@@ -111,31 +111,28 @@ date_default_timezone_set('Asia/Bangkok');
             <div class="first-box">
                     <div class="form-group">
                         <!-- <label for="name">ระบบ</label> -->
-                        <label for="system_name">ระบบ</label>
-                        <div class="col-sm-12" id="day">
-                            <select class="form-control" id="sytem_disease" style="margin-bottom:20px; width:100%; height:35px" name="day">
-                                <option selected disabled>-</option>
-                                <?php foreach ($query as $value) { ?>
-                                <option value="<?=$value['sym_pos']?>"><?=$value['sym_pos']?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="name">ชื่อโรค</label>
-                        <div class="col-sm-12" id="day">
-                            <select class="form-control" id="name_disease" style="margin-bottom:20px; width:100%; height:35px" name="day">
-                            </select>
-                        </div>
-                    </div>
-
-                    <br>
-                    <div class="form-group">
-                        <label for="exampleFormControlTextarea1">ประวัติการเจ็บป่วย</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="6"></textarea>
-                    </div>
-
-                    <button type="button" class="btn btn-primary">บันทึก</button>
+                            <label for="system_name">ระบบ</label>
+                            <div class="col-sm-12" id="day">
+                                <select class="form-control" id="sytem_disease" style="margin-bottom:20px; width:100%; height:35px" name="day">
+                                    <option selected disabled>-</option>
+                                    <?php foreach ($query as $value) { ?>
+                                    <option value="<?=$value['sym_pos']?>"><?=$value['sym_pos']?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="name">ชื่อโรค</label>
+                                <div class="col-sm-12" id="day">
+                                    <select class="form-control" id="name_disease" style="margin-bottom:20px; width:100%; height:35px" name="name_disease">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">ประวัติการเจ็บป่วย</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="6" name="des"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">บันทึก</button>
+                        </form>
 
                     <div class="form-outline mb-1">
                     </div>
@@ -150,7 +147,7 @@ date_default_timezone_set('Asia/Bangkok');
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- <?php include('display_data.php'); ?> -->
+                            <?php include('display_disease.php'); ?>
                         </tbody>
                     </table>
             </div>

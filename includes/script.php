@@ -66,7 +66,7 @@
 
             $.each(result, function(index, item){
                 name_disease.append(
-                    $('<option></option>').val(item.sym_name).html(item.sym_name)
+                    $('<option></option>').val(item.sym_id).html(item.sym_name)
                 );
             });
         });

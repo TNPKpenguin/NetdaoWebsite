@@ -3,7 +3,6 @@ echo "success";
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $hn = $_POST["hn"];
     $date = $_POST["date"];
-    echo $date;
     $id = $_POST["id"];
 
     if (isset($_POST["prename"])) {
