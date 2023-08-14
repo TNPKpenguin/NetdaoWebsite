@@ -26,7 +26,7 @@ date_default_timezone_set('Asia/Bangkok');
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}</style>
-        <?php include('includes/script.php');?>
+        <?php include('web_netdao/includes/script.php');?>
         <?php
             $sql_provinces = "SELECT * FROM provinces";
             $query = mysqli_query($con, $sql_provinces);

@@ -52,7 +52,7 @@
                     <div class="row g-3">
                         <div class="col-md-12 form-group">
                             <label for="name">เลขที่ทั่วไป</label>
-                            <input type="text" class="form-control" id="hn" name="hn" placeholder="เลขที่ทั่วไป">
+                            <input type="text" class="form-control" id="hn" name="hn" placeholder="เลขที่ทั่วไป" readonly>
                             </div>
                         </div>
                     </div>

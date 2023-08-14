@@ -1,21 +1,17 @@
 <?php
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     setlocale(LC_TIME, 'th_TH');
-    $hn = $_POST["hn"];
     $date_time = date("Y-m-d H:i:s");
     $date_time_thai = date("Y-m-d H:i:s", strtotime($date_time) + 5 * 3600);
-    $weight = $_POST["weight"];
-    $height = $_POST["height"];
-    $temp = $_POST["temp"]; 
-    $blood_pressure = $_POST["blood_pressure"];
-    $pulse = $_POST["pulse"];
-    $breath = $_POST["breath"];
-    
+    $case_id = $_POST["case_id"];
+    $sym_no = $POST["sym_no"];
+    $sym_id = $POST["sym_id"];
+    $sym_des = $_POST["sym_des"];
 
     try{
         require_once "bdh.inc.php";
 
-        $query = "INSERT INTO bio_information (date_measure, HN, weight, height, pulse,	breath,	temperature, blood_pressure)  VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO link_sym (case_id, sym_no, date_treat, sym_id, sym_des)  VALUES (?, ?, ?, ?, ?)";
 
         $stmt = $pdo->prepare($query);
 
