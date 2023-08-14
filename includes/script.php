@@ -6,6 +6,8 @@
     var zip_code = $('zip_code');
     var sytem_disease = $('#sytem_disease');
     var name_disease = $('#name_disease');
+    var drug_type = $('#drug_type');
+    var drug_name = $('#drug_name');
 
     // on change province
     provinceObject.on('change', function(){
@@ -69,5 +71,24 @@
             });
         });
     })
+
+    //on change disease
+    drug_type.on('change',function(){
+        var type = $(this).val();
+
+        drug_name.html('<option value="">-</option>');
+
+        $.get('includes/get_namedrug.php?drug_type=' + type, function(data){
+
+        const result = JSON.parse(data);
+
+        $.each(result, function(index, item){
+            drug_name.append(
+                $('<option></option>').val(item.drug_id).html(item.drug_name)
+            );
+            });
+        });
+    })
+
 });
 </script>

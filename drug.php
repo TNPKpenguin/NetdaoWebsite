@@ -131,7 +131,7 @@
                                             <div class="row g-3">                    
                                                 <div class="col-sm-2" id="day">
                                                     <label id="head-label" class="visually-hidden" for="inlineFormSelectPref">ประเภทยา</label>
-                                                    <select class="form-select" id="inlineFormSelectPref">
+                                                    <select class="form-select" id="drug_type">
                                                     <option selected disabled>-</option>
                                                     <?php include('drug_type.php'); ?>
                                                     </select>
@@ -166,13 +166,7 @@
 
                                             <div class="col-sm-2" id="day">
                                                     <label id="head-label" class="visually-hidden" for="inlineFormSelectPref">ชื่อยา</label>
-                                                    <select class="form-select" id="inlineFormSelectPref">
-                                                    <option selected>-</option>
-                                                    <option value="1">นาย</option>
-                                                    <option value="2">นาง</option>
-                                                    <option value="3">นางสาว</option>
-                                                    <option value="4">เด็กชาย</option>
-                                                    <option value="5">เด็กหญิง</option>
+                                                    <select class="form-select" id="drug_name">
                                                     </select>
                                             </div>
 
@@ -232,3 +226,5 @@
 
     </body>
 </html>
+
+<?php include('includes/script.php');?>
