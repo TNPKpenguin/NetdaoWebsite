@@ -132,37 +132,26 @@
                                                 <div class="col-sm-2" id="day">
                                                     <label id="head-label" class="visually-hidden" for="inlineFormSelectPref">ประเภทยา</label>
                                                     <select class="form-select" id="inlineFormSelectPref">
-                                                    <option selected>-</option>
+                                                    <option selected disabled>-</option>
                                                     <?php include('drug_type.php'); ?>
                                                     </select>
                                                 </div>
 
-                                                <div class="col-sm-2" id="day">
-                                                    <label id="head-label" class="visually-hidden" for="inlineFormSelectPref">ชื่อยา</label>
-                                                    <select class="form-select" id="inlineFormSelectPref">
-                                                    <option selected>-</option>
-                                                    <option value="1">นาย</option>
-                                                    <option value="2">นาง</option>
-                                                    <option value="3">นางสาว</option>
-                                                    <option value="4">เด็กชาย</option>
-                                                    <option value="5">เด็กหญิง</option>
-                                                    </select>
-                                                </div>
+                                                
 
                                                 <div class="col-sm-2" id="day">
                                                     <label id="head-label" class="visually-hidden" for="inlineFormSelectPref">วิธีจ่ายยา</label>
                                                     <select class="form-select" id="inlineFormSelectPref">
-                                                    <option selected>-</option>
-                                                    <option value="1">นาย</option>
-                                                    <option value="2">นาง</option>
-                                                    <option value="3">นางสาว</option>
-                                                    <option value="4">เด็กชาย</option>
-                                                    <option value="5">เด็กหญิง</option>
+                                                    <option selected disabled>-</option>
+                                                    <option value="1">oid</option>
+                                                    <option value="2">bid</option>
+                                                    <option value="3">tid</option>
                                                     </select>
                                                 </div> 
                                                 
+                                                <br>
                                                 <div class="up-down">
-                                                    <form class="w3-container w3-card-4">
+                                                    <form class="w1-container w1-card-2">
                                                         <div>
                                                             <input class="w3-radio" type="radio" name="gender" value="male" checked>
                                                             <label>ขึ้น</label></p>
@@ -175,30 +164,40 @@
                                                 </div> 
                                             </div> 
 
+                                            <div class="col-sm-2" id="day">
+                                                    <label id="head-label" class="visually-hidden" for="inlineFormSelectPref">ชื่อยา</label>
+                                                    <select class="form-select" id="inlineFormSelectPref">
+                                                    <option selected>-</option>
+                                                    <option value="1">นาย</option>
+                                                    <option value="2">นาง</option>
+                                                    <option value="3">นางสาว</option>
+                                                    <option value="4">เด็กชาย</option>
+                                                    <option value="5">เด็กหญิง</option>
+                                                    </select>
+                                            </div>
+
                                             <div class="col-sm-2">        
                                                     <label id="head-label"  for="email">จำนวนต่อครั้ง</label>
                                                     <input type="text" class="form-control" placeholder="เบอร์ผู้ติดต่อ" aria-label="State">
                                                     
                                             </div> 
-                                            
+                                               
                                             <div class="col-sm-2">        
                                                     <label id="head-label"  for="email">จำนวนวัน</label>
-                                                    <input type="text" class="form-control" placeholder="เบอร์ผู้ติดต่อ" aria-label="State">
-                                                    
+                                                    <input type="text" class="form-control" placeholder="เบอร์ผู้ติดต่อ" aria-label="State">   
                                             </div> 
 
-                                            <div class="col-sm-2">        
+
+                                            <!-- <div class="col-sm-2">        
                                                     <label id="head-label"  for="email">สรุป</label>
-                                                    <input type="text" class="form-control" placeholder="เบอร์ผู้ติดต่อ" aria-label="State">
-                                                    
-                                            </div>  
+                                                    <input type="text" class="form-control" placeholder="เบอร์ผู้ติดต่อ" aria-label="State">        
+                                            </div>   -->
                                         </div>
                                         <div class="col-md-12 form-group" style="width:100%; margin-top:30px">
                                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                                 <a href="MeasureH2.php" class="btn btn-primary active" role="button" aria-pressed="true">ถัดไป</a>
                                             </div>
                                         </div>
-                                        </form>
                                     </div>
                                 </div>
                                         </div>
