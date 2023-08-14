@@ -237,7 +237,7 @@ date_default_timezone_set('Asia/Bangkok');
 
                         <div class="col-sm-3">
                             <label for="sel1">รหัสไปรษณีย์:</label>
-                            <input type="text" name="zip_code" id="zip_code" class="form-control" disabled value="">
+                            <input type="text" name="zip_code" id="zip_code" class="form-control" readonly value="">
                         </div>
                     </div>
                     </div>    
