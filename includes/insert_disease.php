@@ -31,7 +31,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $pdo = null;
         $stmt = null;
 
-        header("Location: ../disease.php");
+        header("Location: ../disease.php?hn=".$_POST['hn']);
         die();
     }catch(PDOException $e){
         die("Query failed: ".$e->getMessage());

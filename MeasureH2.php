@@ -1,3 +1,9 @@
+<?php
+$con= mysqli_connect("localhost","root","","ndclinic") or die("Error: " . mysqli_error($con));
+mysqli_query($con, "SET NAMES 'utf8' ");
+error_reporting( error_reporting() & ~E_NOTICE );
+date_default_timezone_set('Asia/Bangkok');
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,7 +13,7 @@
         <!-- Link Bootstrap CSS -->
         
     </head>
-    <body  onload="updateVariableValueDisplay()">
+    <body>
         <link rel="stylesheet" href="css/Treatment.css">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -18,8 +24,11 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}</style>
-        
-
+        <?php
+        $sql= "SELECT * FROM patient where HN='{$_GET['hn']}'";
+        $query = mysqli_query($con, $sql);
+        $row = $query->fetch_assoc();
+        ?>
         <div class="wrapper">
             <nav id="sidebar">
                 <!-- Sidebar Header -->
@@ -52,7 +61,7 @@
                     <div class="row g-3">
                         <div class="col-md-12 form-group">
                             <label for="name">เลขที่ทั่วไป</label>
-                            <input type="text" class="form-control" id="hn" name="hn" placeholder="เลขที่ทั่วไป" readonly>
+                            <input type="text" class="form-control" id="hn" name="hn" placeholder="เลขที่ทั่วไป" readonly value="<?php echo $_GET['hn']?>">
                             </div>
                         </div>
                     </div>
@@ -65,12 +74,12 @@
                         <div class="row g-3">
                             <div class="col-md-6 form-group">
                                 <label id="head-label" for="name">ชื่อ</label>
-                                <input class="w3-input" type="text" placeholder="" name="name" disabled id="name">
+                                <input class="w3-input" type="text" placeholder="" name="name" disabled id="name" value="<?php echo $row['fname']?>">
                             </div>
 
                             <div class="col-md-6 form-group">
                                 <label id="head-label" for="name">นามสกุล</label>
-                                <input class="w3-input " type="text" placeholder="" name="lastname" disabled id="lastname">
+                                <input class="w3-input " type="text" placeholder="" name="lastname" disabled id="lastname" value="<?php echo $row['lname']?>">
                             </div>
                         </div>
 
@@ -118,7 +127,7 @@
 
                         <div class="col-md-12 form-group" style="width:100%; margin-top:30px">
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                    <a href="history.php"><button type="submit" onclick="saveToLocalStorage()">ถัดไป</button></a>
+                                    <button type="submit">ถัดไป</button>
                                 </div>
                             </div>
                 </div>

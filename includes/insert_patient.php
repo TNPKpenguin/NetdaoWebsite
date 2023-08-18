@@ -86,7 +86,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $stmt2 = null;
         $stmt3 = null;
 
-        header("Location: ../history.php");
+        header("Location: ../history.php?hn=".$_POST['hn']);
         die();
     }catch(PDOException $e){
         echo "error";

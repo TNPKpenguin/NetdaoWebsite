@@ -14,7 +14,7 @@ date_default_timezone_set('Asia/Bangkok');
   <!-- Link Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
-<body onload="updateVariableValueDisplay()">
+<body>
 <link rel="stylesheet" href="css/disease.css">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -28,9 +28,6 @@ date_default_timezone_set('Asia/Bangkok');
         <?php
             $sql= "SELECT DISTINCT(sym_pos) FROM symptoms";
             $query = mysqli_query($con, $sql);
-
-            $sql2= "SELECT sym_name FROM symptoms WHERE sym_pos like 'ระบบทางเดินอาหาร'";
-            $query2 = mysqli_query($con, $sql2); 
         ?>
         <div class="wrapper">
             <nav id="sidebar">
@@ -64,26 +61,13 @@ date_default_timezone_set('Asia/Bangkok');
                         <div class="row g-3">
                             <div class="col-md-9 form-group">
                                 <label for="name">เลขที่ทั่วไป</label>
-                                <input type="text" class="form-control" name="hn" id="hn" placeholder="เลขที่ทั่วไป" readonly>
+                                <input type="text" class="form-control" name="hn" id="hn" placeholder="เลขที่ทั่วไป" readonly value="<?php echo $_GET['hn']?>">
                             </div>
 
                             <div class="bootstrap-iso" style="background-color: rgb(82, 206, 255)">
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-md-0 col-sm-0 col-xs-0">
-                                            <div class="form-group ">
-                                                <label class="control-label col-sm-2 requiredField" for="date" style="padding-left:33px">
-                                                    Date
-                                                </label>
-                                            <div class="col-sm-16" style="padding-left:18px">
-                                                <div class="input-group">
-                                                    <div class="input-group-addon">
-                                                        <i class="fa fa-calendar"></i>
-                                                    </div>
-                                                <input class="form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text"/>
-                                                </div>
-                                            </div>
-                                            </div>
                                                 <div class="form-group">
                                                     <div class="col-sm-10 col-sm-offset-2">
                                                         <input name="_honey" style="display:none" type="text"/>
@@ -147,9 +131,29 @@ date_default_timezone_set('Asia/Bangkok');
                             </tr>
                         </thead>
                         <tbody>
-                            <?php include('display_disease.php'); ?>
+                        <?php
+                        $sql2 = "SELECT * FROM link_sym l,symptoms s WHERE l.sym_id = s.sym_id and case_id = (SELECT case_id FROM his_treat WHERE HN='{$_GET['hn']}' ORDER by case_id DESC LIMIT 1);";
+                        $query2 = mysqli_query($con, $sql2);
+                        while ($row2 = $query2->fetch_assoc()) {
+                            echo "<tr>";
+                            echo "<td><div class='d-flex align-items-center'><div class='ms-3'><p class='fw-bold mb-1'>" . $row2['sym_no'] . "</p></div></div></td>";
+                            echo "<td><p class='fw-normal mb-1'>" . $row2['sym_name'] . "</p></td>";
+                            echo "</tr>";
+                        }
+                        ?>
                         </tbody>
                     </table>
+                    <?php
+                        $sql3 = "SELECT count(*) FROM link_sym l,symptoms s WHERE l.sym_id = s.sym_id and case_id = (SELECT case_id FROM his_treat WHERE HN='{$_GET['hn']}' ORDER by case_id DESC LIMIT 1);";
+                        $query3 = mysqli_query($con,$sql3);
+                        $row3 = $query3->fetch_assoc();
+
+                        if($row3['count(*)'] > 0){
+                            echo (' <a href=\'drug.php?hn='.$_GET['hn'].'\'>
+                                    <button type="button" class="btn btn-primary">ถัดไป</button>
+                                    </a>');
+                        }
+                    ?>
             </div>
         </div>
     </div>

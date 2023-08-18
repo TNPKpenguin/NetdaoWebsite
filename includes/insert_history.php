@@ -18,7 +18,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $pdo = null;
         $stmt = null;
 
-        header("Location: ../MeasureH2.php");
+        header("Location: ../MeasureH2.php?hn=".$_POST['hn']);
         die();
     }catch(PDOException $e){
         die("Query failed: ".$e->getMessage());

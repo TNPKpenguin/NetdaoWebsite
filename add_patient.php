@@ -315,7 +315,7 @@ date_default_timezone_set('Asia/Bangkok');
                             <input class="w3-input" type="text" placeholder="" name="thai_year">
                         </div>
                         <div>
-                                <a href="history.php"><button type="submit" onclick="saveToLocalStorage()">ถัดไป</button></a>
+                                <button type="submit">ถัดไป</button>
                             </div>
                          </div> 
                     </div>

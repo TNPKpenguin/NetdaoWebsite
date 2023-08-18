@@ -1,3 +1,9 @@
+<?php
+$con= mysqli_connect("localhost","root","","ndclinic") or die("Error: " . mysqli_error($con));
+mysqli_query($con, "SET NAMES 'utf8' ");
+error_reporting( error_reporting() & ~E_NOTICE );
+date_default_timezone_set('Asia/Bangkok');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +13,7 @@
   <!-- Link Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
-<body onload="updateVariableValueDisplay()">
+<body>
 <link rel="stylesheet" href="css/Treatment.css">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -46,11 +52,11 @@
                 <!-- Add your content here on the right side of the sidebar -->
         <div class="content-right">
                 <div class="header">
-                <div class=container mt-5>
+                <div class=container>
                         <div class="row g-3">
                             <div class="col-md-12 form-group">
                                 <label for="name">เลขที่ทั่วไป</label>
-                                <input type="text" class="form-control" id="hn" name="hn" placeholder="เลขที่ทั่วไป" disabled>
+                                <input type="text" class="form-control" id="hn" name="hn" placeholder="เลขที่ทั่วไป" disabled value="<?php echo $_GET['hn']?>">
                                 </div>
                             </div>
                         </div>
@@ -113,7 +119,8 @@
 
                 <br>
                 <div align="right">
-                    <a href="disease.php"><button type="button" class="btn btn-primary"><span class="bi bi-plus-square-fill"></span>Add</button></a>
+                    
+                    <button type="button" class="btn btn-primary" onclick="window.location.href = 'disease.php?hn='+encodeURIComponent('<?php echo $_GET['hn']?>')"><span class="bi bi-plus-square-fill"></span>Add</button>
                 </div>  
                     </div> 
                  </div>

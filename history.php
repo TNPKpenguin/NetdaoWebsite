@@ -7,7 +7,7 @@
         <!-- Link Bootstrap CSS -->
         
     </head>
-    <body onload="updateVariableValueDisplay()">
+    <body>
         <link rel="stylesheet" href="css/history.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -53,7 +53,7 @@
                         <div class="row g-3">
                             <div class="col-md-12 form-group">
                                 <label for="name">เลขที่ทั่วไป</label>
-                                <input type="text" class="form-control" id="hn" name="hn" placeholder="เลขที่ทั่วไป" readonly>
+                                <input type="text" class="form-control" id="hn" name="hn" placeholder="เลขที่ทั่วไป" readonly value="<?php echo $_GET['hn']?>">
                             </div>
                             </div>
                         </div>
@@ -95,7 +95,7 @@
                             </div>
                             <div class="col-md-12 form-group" style="width:100%; margin-top:30px">
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                    <a href="MeasureH2.php"><button type="submit" onclick="saveToLocalStorage()">ถัดไป</button></a>
+                                    <button type="submit">ถัดไป</button>
                                 </div>
                             </div>
                         </div>     
