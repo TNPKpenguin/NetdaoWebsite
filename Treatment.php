@@ -91,21 +91,23 @@ date_default_timezone_set('Asia/Bangkok');
                         }
 
                     // Fetch data from the "users" table
-                    $sql = "SELECT case_id FROM his_treat WHERE HN='$hn'";
+                    $sql = "SELECT * FROM his_treat WHERE HN='$hn'";
                     $result = $conn->query($sql);
 
                     // Check if there is data in the result
                     if ($result->num_rows > 0) {
+                        $count = 1;
                         // Loop through the data and generate table rows
                         while ($row = $result->fetch_assoc()) {
                             echo "<tr>";
-                            echo "<td><div class='d-flex align-items-center'><div class='ms-3'><p class='fw-bold mb-1'>" . $row['case_id'] . "</p></div></div></td>";
-                            echo "<td><p class='fw-normal mb-1'>" . $row['case_id'] . "</p></td>";
+                            echo "<td><div class='d-flex align-items-center'><div class='ms-3'><p class='fw-bold mb-1'>" . $count . "</p></div></div></td>";
+                            echo "<td><p class='fw-normal mb-1'>" . $row['date_treat'] . "</p></td>";
                             echo "<td>" . $row['case_id']. " " . $row['case_id'] . "</td>";
                             // Add icons for "bin" and "edit" actions
                             echo '<td><button type="button" class="btn btn-outline-primary">Edit</button></td>';
                             echo '<td><button type="button" class="btn btn-outline-primary">Delete</button></td>';
                             echo "</tr>";
+                            $count += 1;
                         }
                     } else {
                         echo "<tr><td colspan='5'>No data found</td></tr>";
