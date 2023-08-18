@@ -1,32 +1,37 @@
 <?php
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    setlocale(LC_TIME, 'th_TH');
-    $date_time = date("Y-m-d H:i:s");
-    $date_time_thai = date("Y-m-d H:i:s", strtotime($date_time) + 5 * 3600);
-    $case_id = $_POST["case_id"];
-    $sym_no = $POST["sym_no"];
-    $sym_id = $POST["sym_id"];
-    $sym_des = $_POST["sym_des"];
+$con= mysqli_connect("localhost","root","","ndclinic") or die("Error: " . mysqli_error($con));
+mysqli_query($con, "SET NAMES 'utf8' ");
+error_reporting( error_reporting() & ~E_NOTICE );
+date_default_timezone_set('Asia/Bangkok');
 
-    try{
-        require_once "bdh.inc.php";
+$sql = "SELECT case_id FROM his_treat order by case_id DESC LIMIT 1";
+$query = mysqli_query($con,$sql);
+$row = $query->fetch_assoc();
 
-        $query = "INSERT INTO link_sym (case_id, sym_no, date_treat, sym_id, sym_des)  VALUES (?, ?, ?, ?, ?)";
+$caseid = $row['case_id'] + 1;
 
-        $stmt = $pdo->prepare($query);
+$date_time = date("Y-m-d H:i:s");
+$date_time_thai = date("Y-m-d H:i:s", strtotime($date_time) + 5 * 3600);
 
-        $stmt->execute([$date_time_thai, $hn, $weight, $height, $pulse, $breath,  $temp, $blood_pressure]);
+$hn = $_GET['hn'];
+$staff = 0;
 
-        $pdo = null;
-        $stmt = null;
+try{
+    require_once "bdh.inc.php";
 
-        header("Location: ../Treatment.php");
-        die();
-    }catch(PDOException $e){
-        die("Query failed: ".$e->getMessage());
-    }
-    
-}else{
-    // header("Location: ../add_patient.php");
-    echo "error";
+    $query = "INSERT INTO his_treat(case_id, date_treat, HN,staff_id) VALUES (?,?,?,?)";
+
+    $stmt = $pdo->prepare($query);
+
+    $stmt->execute([$caseid,$date_time_thai, $hn,$staff]);
+
+    $pdo = null;
+    $stmt = null;
+
+    header("Location: ../disease.php?hn=".$_GET['hn']);
+    die();
+}catch(PDOException $e){
+    die("Query failed: ".$e->getMessage());
 }
+
+?>

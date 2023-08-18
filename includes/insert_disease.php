@@ -14,7 +14,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $sql2 = "SELECT count(*) FROM `link_sym` WHERE case_id = $case_id";
     $query2 = mysqli_query($con, $sql2);
     $row2 = $query2->fetch_assoc();
-    $sym_no = $row2['count(*)'];
+    $sym_no = $row2['count(*)']+1;
 
     $sym_id = $_POST["name_disease"];
     $des = $_POST["des"];

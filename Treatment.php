@@ -120,7 +120,7 @@ date_default_timezone_set('Asia/Bangkok');
                 <br>
                 <div align="right">
                     
-                    <button type="button" class="btn btn-primary" onclick="window.location.href = 'disease.php?hn='+encodeURIComponent('<?php echo $_GET['hn']?>')"><span class="bi bi-plus-square-fill"></span>Add</button>
+                    <button type="button" class="btn btn-primary" onclick="window.location.href = 'includes/insert_treatment.php?hn='+encodeURIComponent('<?php echo $_GET['hn']?>')"><span class="bi bi-plus-square-fill"></span>Add</button>
                 </div>  
                     </div> 
                  </div>
