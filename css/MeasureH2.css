@@ -11,6 +11,11 @@
     background: #f5f5f5;
 }
 
+.disabled-link {
+    pointer-events: none; /* Disable click events */
+    color: #999; /* Change text color to indicate it's disabled */
+}
+
 #sidebarCollapse span {
     width: 80%;
     height: 2px;

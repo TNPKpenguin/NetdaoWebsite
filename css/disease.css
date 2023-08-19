@@ -5,6 +5,11 @@
     width: 100%;
 }
 
+.disabled-link {
+    pointer-events: none; /* Disable click events */
+    color: #999; /* Change text color to indicate it's disabled */
+}
+
 .first-box{
     padding-top: 30px;
     padding-left: 30px;

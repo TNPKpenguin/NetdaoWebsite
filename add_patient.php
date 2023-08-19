@@ -33,18 +33,16 @@ date_default_timezone_set('Asia/Bangkok');
         ?>
         <div class="wrapper">
             <nav id="sidebar">
-                <!-- Sidebar Header -->
                 <div class="sidebar-header">
                     <h3>กรอกข้อมูลคนไข้</h3>
                 </div>
-                <!-- Sidebar Links -->
                 <ul class="list-unstyled components">
                     <li class="active"><a href="add_patient.php">ข้อมูลผู้ป่วย</a></li>
-                    <li><a href="history.php">ประวัติการเจ็บป่วย</a></li>
-                    <li><a href="MeasureH2.php">ข้อมูลสุขภาพ</a></li>
-                    <li><a href="Treatment.php">รายการการรักษา</a></li>
-                    <li><a href="disease.php">การวินิจฉัย</a></li>
-                    <li><a href="drug.php">การจ่ายยา</a></li>
+                    <li class="disabled-link"><a href="">ประวัติการเจ็บป่วย</a></li>
+                    <li class="disabled-link"><a href="">ข้อมูลสุขภาพ</a></li>
+                    <li class="disabled-link"><a href="">รายการการรักษา</a></li>
+                    <li class="disabled-link"><a href="">การวินิจฉัย</a></li>
+                    <li class="disabled-link"><a href="">การจ่ายยา</a></li>
                 </ul>
             </nav>
 
@@ -289,7 +287,7 @@ date_default_timezone_set('Asia/Bangkok');
 
                         <div class="col-sm-2" id="day">
                             <label id="head-label-day" class="visually-hidden" for="day">วัน</label>
-                            <select class="form-select" id="inlineFormSelectPref" style="width:140px;" name="day">
+                            <select class="form-select" id="day" style="width:140px;" name="day">
                             <option selected>-</option>
                             <option value="อาทิตย์">อาทิตย์</option>
                             <option value="จันทร์">จันทร์</option>
@@ -346,7 +344,7 @@ date_default_timezone_set('Asia/Bangkok');
                 var date_input=$('input[name="date"]'); //our date input has the name "date"
                 var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
                 date_input.datepicker({
-                    format: 'dd/mm/yyyy',
+                    format: 'yyyy/mm/dd',
                     container: container,
                     todayHighlight: true,
                     autoclose: true,
@@ -357,7 +355,7 @@ date_default_timezone_set('Asia/Bangkok');
                 var date_input=$('input[name="date2"]'); //our date input has the name "date"
                 var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
                 date_input.datepicker({
-                    format: 'dd/mm/yyyy',
+                    format: 'yyyy/mm/dd',
                     container: container,
                     todayHighlight: true,
                     autoclose: true,

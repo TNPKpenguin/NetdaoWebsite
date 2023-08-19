@@ -33,12 +33,12 @@ date_default_timezone_set('Asia/Bangkok');
                 </div>
                 <!-- Sidebar Links -->
                 <ul class="list-unstyled components">
-                    <li><a href="add_patient.php">ข้อมูลผู้ป่วย</a></li>
-                    <li><a href="history.php">ประวัติการเจ็บป่วย</a></li>
-                    <li><a href="MeasureH2.php">ข้อมูลสุขภาพ</a></li>
+                    <li class="disabled-link"><a href="add_patient.php">ข้อมูลผู้ป่วย</a></li>
+                    <li class="disabled-link"><a href="history.php">ประวัติการเจ็บป่วย</a></li>
+                    <li class="disabled-link"><a href="MeasureH2.php">ข้อมูลสุขภาพ</a></li>
                     <li class="active"><a href="Treatment.php">รายการการรักษา</a></li>
-                    <li><a href="disease.php">การวินิจฉัย</a></li>
-                    <li><a href="drug.php">การจ่ายยา</a></li>
+                    <li class="disabled-link"><a href="disease.php">การวินิจฉัย</a></li>
+                    <li class="disabled-link"><a href="drug.php">การจ่ายยา</a></li>
                 </ul>
             </nav>
 
@@ -94,15 +94,26 @@ date_default_timezone_set('Asia/Bangkok');
                     $sql = "SELECT * FROM his_treat WHERE HN='$hn'";
                     $result = $conn->query($sql);
 
-                    // Check if there is data in the result
+                    $sql = "SELECT * FROM link_drug WHERE case_id = (SELECT case_id FROM his_treat WHERE HN='{$_GET['hn']}' ORDER by case_id DESC LIMIT 1)";
+                    $query = mysqli_query($con, $sql);
+
+                    $row1 = $query->fetch_assoc();
+
+                    $sql = "SELECT * FROM link_drug WHERE case_id = (SELECT case_id FROM his_treat WHERE HN='{$_GET['hn']}' ORDER by case_id DESC LIMIT 1)";
+                    $query = mysqli_query($con, $sql);
+
                     if ($result->num_rows > 0) {
                         $count = 1;
-                        // Loop through the data and generate table rows
                         while ($row = $result->fetch_assoc()) {
+                            $sql = "SELECT drug_name FROM drug WHERE drug_id = '{$row1['drug_id']}'";
+                            $query2 = mysqli_query($con, $sql);
+                            $row2 = $query2->fetch_assoc();
+                            $drug_name = $row2["drug_name"];
+
                             echo "<tr>";
                             echo "<td><div class='d-flex align-items-center'><div class='ms-3'><p class='fw-bold mb-1'>" . $count . "</p></div></div></td>";
                             echo "<td><p class='fw-normal mb-1'>" . $row['date_treat'] . "</p></td>";
-                            echo "<td>" . $row['case_id']. " " . $row['case_id'] . "</td>";
+                            echo "<td>" . $drug_name. "</td>";
                             // Add icons for "bin" and "edit" actions
                             echo '<td><button type="button" class="btn btn-outline-primary">Edit</button></td>';
                             echo '<td><button type="button" class="btn btn-outline-primary">Delete</button></td>';

@@ -7,6 +7,10 @@
     /* position: fixed; */
     width: 100%;
 }
+.disabled-link {
+    pointer-events: none; 
+    color: #999; 
+}
 
 .first-box{
     margin-top: 8px;

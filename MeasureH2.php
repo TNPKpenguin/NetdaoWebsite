@@ -37,12 +37,12 @@ date_default_timezone_set('Asia/Bangkok');
                 </div>
                 <!-- Sidebar Links -->
                 <ul class="list-unstyled components">
-                    <li><a href="add_patient.php">ข้อมูลผู้ป่วย</a></li>
-                    <li><a href="history.php">ประวัติการเจ็บป่วย</a></li>
+                    <li class="disabled-link"><a href="add_patient.php">ข้อมูลผู้ป่วย</a></li>
+                    <li class="disabled-link"><a href="history.php">ประวัติการเจ็บป่วย</a></li>
                     <li class="active"><a href="MeasureH2.php">ข้อมูลสุขภาพ</a></li>
-                    <li><a href="Treatment.php">รายการการรักษา</a></li>
-                    <li><a href="disease.php">การวินิจฉัย</a></li>
-                    <li><a href="drug.php">การจ่ายยา</a></li>
+                    <li class="disabled-link"><a href="Treatment.php">รายการการรักษา</a></li>
+                    <li class="disabled-link"><a href="disease.php">การวินิจฉัย</a></li>
+                    <li class="disabled-link"><a href="drug.php">การจ่ายยา</a></li>
                 </ul>
             </nav>
 

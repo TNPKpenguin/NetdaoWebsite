@@ -5,17 +5,33 @@
     width: 100%;
 }
 
+.disabled-link {
+    pointer-events: none; /* Disable click events */
+    color: #999; /* Change text color to indicate it's disabled */
+}
+
 .forth-box{
-    margin-top: 10px;
     width: 100%;
     background-color: rgb(255, 255, 255);
     /* margin-left: 20%;
     margin-right: 10%; */
-    padding-bottom: 15px;  
+    padding-bottom: 25px;  
     border-radius: 5px;
-    /* border-style: solid;
+    border-style: solid;
     border-width: thin;
-    border-color: #e0dfdf; */
+    border-color: #e0dfdf;
+}
+
+#database{
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    /* margin-left: 20%;
+    margin-right: 10%; */
+    padding-bottom: 25px;  
+    border-radius: 5px;
+    border-style: solid;
+    border-width: thin;
+    border-color: #e0dfdf;
 }
 
 #head-label{
@@ -49,6 +65,7 @@ select{
     background: #555;
     transition: all 0.8s cubic-bezier(0.810, -0.330, 0.345, 1.375);
 }
+
 
 #sidebarCollapse span:first-of-type {
     /* rotate first one */
