@@ -73,6 +73,8 @@
         });
     })
 
+    
+
     //on change disease
     drug_type.on('change',function(){
         var type = $(this).val();
@@ -90,6 +92,7 @@
             });
         });
     })
+    
 
 });
 </script>
