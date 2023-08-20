@@ -22,16 +22,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $sql2 =  "SELECT * FROM his_treat WHERE case_id = '{$case_id}'";
     $query2 = mysqli_query($con, $sql2);
     $row2 = $query2->fetch_assoc();
-    $date_treat = $row2["date_treat"];
 
     try{
         require_once "bdh.inc.php";
 
-        $query = "INSERT INTO link_sym (case_id, sym_no, date_treat, sym_id, sym_des)  VALUES (?, ?, ?, ?, ?)";
+        $query = "INSERT INTO link_sym (case_id, sym_no, sym_id, sym_des)  VALUES (?, ?, ?, ?)";
 
         $stmt = $pdo->prepare($query);
 
-        $stmt->execute([$case_id, $sym_no, $date_treat, $sym_id, $des]);
+        $stmt->execute([$case_id, $sym_no, $sym_id, $des]);
 
         $pdo = null;
         $stmt = null;

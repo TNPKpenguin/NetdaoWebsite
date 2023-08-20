@@ -68,13 +68,13 @@ date_default_timezone_set('Asia/Bangkok');
                 <!-- Add your content here on the right side of the sidebar -->
         <div class="content-right">
         <main>
-        <form action="includes/insert_patient.php" method="post"> 
+        <form action="../includes/update_patient.php" method="post"> 
         <div class="header">
             <div class=container mt-5>
                     <div class="row g-3">
                         <div class="col-md-9 form-group">
                             <label for="name">เลขที่ทั่วไป</label>
-                            <input type="text" class="form-control" id="hn" placeholder="เลขที่ทั่วไป" name="hn" value="<?php echo $row2['HN'] ?>" disabled>
+                            <input type="text" class="form-control" id="hn" placeholder="เลขที่ทั่วไป" name="hn" value="<?php echo $row2['HN'] ?>">
                         </div>
 
                         <div class="bootstrap-iso" style="background-color: rgb(82, 206, 255)">
@@ -221,7 +221,7 @@ date_default_timezone_set('Asia/Bangkok');
                             <div class="form-group">
                                 <label for="sel1">จังหวัด:</label>
                                 <select class="form-control" name="province" id="province">
-                                        <option value="<?php echo $row3['pname'] ?>" selected disabled><?php echo $row3['pname'] ?></option>
+                                        <option value="<?php $row3['pname'] ?>" selected disabled><?php echo $row3['pname'] ?></option>
                                         <?php foreach ($query as $value) { ?>
                                         <option value="<?=$value['code']?>"><?=$value['name_th']?></option>
                                         <?php } ?>
@@ -233,7 +233,7 @@ date_default_timezone_set('Asia/Bangkok');
                             <div class="form-group">
                                     <label for="sel1">อำเภอ:</label>
                                     <select class="form-control" name="amphure" id="amphure">
-                                    <option value="<?php echo $row3['dname'] ?>" selected disabled><?php echo $row3['dname'] ?></option>
+                                    <option value="<?php $row3['dname'] ?>" selected disabled><?php echo $row3['dname'] ?></option>
                                     </select>
                             </div>
                         </div>
@@ -242,7 +242,7 @@ date_default_timezone_set('Asia/Bangkok');
                             <div class="form-group">
                                 <label for="sel1">ตำบล:</label>
                                 <select class="form-control" name="district" id="district">
-                                <option value="<?php echo $row3['sname'] ?>" selected disabled><?php echo $row3['sname'] ?></option>
+                                <option value="<?php $row3['sname'] ?>" selected disabled><?php echo $row3['sname'] ?></option>
                                 </select>
                             </div>
                         </div>
@@ -338,7 +338,7 @@ date_default_timezone_set('Asia/Bangkok');
                             <input class="w3-input" type="text" placeholder="" name="thai_year" value="<?php echo $row4['year'] ?>">
                         </div>
                         <div>
-                                <button type="submit">ถัดไป</button>
+                                <button type="submit">บันทึกการแก้ไข</button>
                                 <button type="button" onclick="window.location.href='../patient.php'">ปิด</button>
                             </div>
                          </div> 

@@ -94,39 +94,25 @@ date_default_timezone_set('Asia/Bangkok');
                     $sql = "SELECT * FROM his_treat WHERE HN='$hn'";
                     $result = $conn->query($sql);
 
-                    // $sql1 = "SELECT drug_id FROM link_drug WHERE case_id IN (SELECT case_id FROM his_treat WHERE HN='{$_GET['hn']}' ORDER BY case_id DESC)";
-                    // $query1 = mysqli_query($con, $sql1);
-
-        
-                    // $row1 = $query1->fetch_assoc();
-                    // print_r($row1);
-
-                    $sql1 = "SELECT case_id FROM his_treat WHERE HN='{$_GET['hn']}' ORDER BY case_id DESC";
-                    $query1 = mysqli_query($con, $sql1);
-                    $caseIds = array();
-                    while ($row1 = $query1->fetch_assoc()) {
-                        $caseIds[] = $row1['case_id'];
-                    }
-
-                    $sql2 = "SELECT * FROM link_drug WHERE case_id = (SELECT case_id FROM his_treat WHERE HN='{$_GET['hn']}' ORDER by case_id DESC LIMIT 1)";
-                    $query2 = mysqli_query($con, $sql2);
-
                     if ($result->num_rows > 0) {
                         $count = 1;
                         $count_id = 0;
                         while ($row = $result->fetch_assoc()) {
-                            $sql3 = "SELECT drug_name FROM drug WHERE drug_id = (SELECT drug_id FROM link_drug WHERE case_id = $caseIds[$count_id] LIMIT 1)";
-                            $query3 = mysqli_query($con, $sql3);
-                            $drug = array();
-                            while($row3 = $query3->fetch_assoc()){
-                                $drug[] = $row3["drug_name"];
-                            }
-
+                            $sql2 = "SELECT * FROM link_sym l,his_treat h,symptoms s
+                            WHERE l.case_id = h.case_id
+                            and l.sym_id = s.sym_id
+                            and HN='$hn'
+                            and h.case_id = {$row['case_id']}";
+                            $result2 = $conn->query($sql2);
 
                             echo "<tr>";
                             echo "<td><div class='d-flex align-items-center'><div class='ms-3'><p class='fw-bold mb-1'>" . $count . "</p></div></div></td>";
                             echo "<td><p class='fw-normal mb-1'>" . $row['date_treat'] . "</p></td>";
-                            echo "<td>" .$drug[0]. "</td>";
+                            echo "<td>";
+                            while($row2 = $result2->fetch_assoc()){
+                                echo $row2['sym_name'] . "<br>";
+                            }
+                            echo "</td>";
                             // Add icons for "bin" and "edit" actions
                             echo '<td><button type="button" class="btn btn-outline-primary">Edit</button></td>';
                             echo "<td><button class='delete-button' value='{$row['date_treat']}'>Delete</button></td>";
