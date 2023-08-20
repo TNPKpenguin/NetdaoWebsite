@@ -37,7 +37,7 @@
             var result = JSON.parse(data);
             $.each(result, function(index, item){
                 districtObject.append(
-                    $('<option></option>').val(item.district_code).html(item.name_th)
+                    $('<option></option>').val(item.code).html(item.name_th)
                 );
             });
         });

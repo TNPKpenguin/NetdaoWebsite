@@ -371,5 +371,3 @@ date_default_timezone_set('Asia/Bangkok');
         </script>
     </body>
 </html>
-
-<?php include('includes/script.php');?>

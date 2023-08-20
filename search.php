@@ -39,7 +39,7 @@ if (isset($_POST['query'])) {
                                 <td>{$row['HN']}</td>
                                 <td>{$row['fname']} {$row['lname']}</td>
                                 <td>{$row['id_person']}</td>
-                                <td><button class='btn btn-outline-primary' id='delete-button'>Edit</button></td>
+                                <td><a href='edit/edit_patient.php?hn={$row['HN']}'><button class='btn btn-outline-primary' id='delete-button'>Edit</button></a></td>
                                 <td><button class='delete-button' value='{$row['HN']}'>Delete</button></td>
                             </tr>";
             }

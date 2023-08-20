@@ -46,7 +46,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         echo "tambon is not selected!";
     }
 
-    $postcode = $_POST["zip_code"];
+    $postcode = $_POST["district"];
     $relationship = $_POST["relationship"];
     $relation_name = $_POST["relation_name"];
     $relation_lastname = $_POST["relation_lastname"];

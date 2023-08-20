@@ -5,7 +5,7 @@ error_reporting( error_reporting() & ~E_NOTICE );
 date_default_timezone_set('Asia/Bangkok');
 
 
-$sql = "SELECT * FROM subdistrict WHERE district_code={$_GET['district_code']}";
+$sql = "SELECT * FROM subdistrict WHERE code={$_GET['district_code']}";
 
 $query = mysqli_query($con, $sql);
 
