@@ -24,7 +24,7 @@
             echo "<td>" . $row['fname']. " " . $row['lname'] . "</td>";
             // Add icons for "bin" and "edit" actions
             echo '<td><button type="button" class="btn btn-outline-primary">Edit</button></td>';
-            echo '<td><button type="button" class="btn btn-outline-primary">Delete</button></td>';
+            echo "<td><button class='delete-button' value='{$row['HN']}'>Delete</button></td>";
             echo "</tr>";
         }
     } else {
@@ -34,3 +34,29 @@
     // Close the database connection
     $conn->close();
 ?>
+
+
+<script>
+$(document).ready(function () {
+    $(document).on("click", ".delete-button", function () {
+        var hn = $(this).val();
+
+        var confirmDelete = confirm("Are you sure you want to delete this record with HN: " + hn + "?");
+        if (confirmDelete) {
+            $.ajax({
+                type: "POST", 
+                url: "includes/delete_treatment.php",
+                data: { hn: hn }, 
+                success: function(response) {
+                    alert("Record with HN: " + hn + " has been deleted!");
+                    location.reload();
+                },
+                error: function(xhr, status, error) {
+                    alert("An error occurred while deleting the record: " + error);
+                }
+            });
+        }
+    });
+});
+
+</script>

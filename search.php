@@ -39,8 +39,8 @@ if (isset($_POST['query'])) {
                                 <td>{$row['HN']}</td>
                                 <td>{$row['fname']} {$row['lname']}</td>
                                 <td>{$row['id_person']}</td>
-                                <td><button type='button' class='btn btn-outline-primary'>Edit</button></td>
-                                <td><button type='button' class='btn btn-outline-danger'>Delete</button></td>
+                                <td><button class='btn btn-outline-primary' id='delete-button'>Edit</button></td>
+                                <td><button class='delete-button' value='{$row['HN']}'>Delete</button></td>
                             </tr>";
             }
         } else {
@@ -53,3 +53,28 @@ if (isset($_POST['query'])) {
 }
 mysqli_close($conn);
 ?>
+
+<script>
+$(document).ready(function () {
+    $(document).on("click", ".delete-button", function () {
+        var hn = $(this).val();
+
+        var confirmDelete = confirm("Are you sure you want to delete this record with HN: " + hn + "?");
+        if (confirmDelete) {
+            $.ajax({
+                type: "POST", 
+                url: "includes/delete_patient.php",
+                data: { hn: hn }, 
+                success: function(response) {
+                    alert("Record with HN: " + hn + " has been deleted!");
+                    location.reload();
+                },
+                error: function(xhr, status, error) {
+                    alert("An error occurred while deleting the record: " + error);
+                }
+            });
+        }
+    });
+});
+
+</script>

@@ -23,8 +23,8 @@
             echo "<td><p class='fw-normal mb-1'>" . $row['id_person'] . "</p></td>";
             echo "<td>" . $row['fname']. " " . $row['lname'] . "</td>";
             // Add icons for "bin" and "edit" actions
-            echo '<td><button type="button" class="btn btn-outline-primary">Edit</button></td>';
-            echo '<td><button type="button" class="btn btn-outline-primary">Delete</button></td>';
+            echo '<td><a href="www.google.com"><button type="button" class="btn btn-outline-primary" id="delete-button">Edit</button></a></td>';
+            echo '<td><button type="button" class="btn btn-outline-primary delete-button" data-hn="' . $row['HN'] . '" id="delete-button">Delete</button></td>';
             echo "</tr>";
         }
     } else {

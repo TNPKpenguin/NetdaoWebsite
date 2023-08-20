@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-
     <br>
       <div class="container mt-4">
         <div class="form-outline mb-4">
@@ -51,20 +50,6 @@ $(document).ready(function(){
     // Trigger the AJAX call on page load (when the search box is empty)
     $("#search").trigger("keyup");
 });
-
-var searchText = $(this).val();
-
-if (searchText === "") {
-    $.ajax({
-        url: "search.php",
-        method: "POST",
-        data: {query: searchText},
-        success: function(data){
-            $("#result").html(data);
-        }
-    });
-}
-
 
 var searchText = $(this).val();
 

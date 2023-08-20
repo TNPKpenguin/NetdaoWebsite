@@ -36,7 +36,7 @@ date_default_timezone_set('Asia/Bangkok');
                     <li class="disabled-link"><a href="add_patient.php">ข้อมูลผู้ป่วย</a></li>
                     <li class="disabled-link"><a href="history.php">ประวัติการเจ็บป่วย</a></li>
                     <li class="disabled-link"><a href="MeasureH2.php">ข้อมูลสุขภาพ</a></li>
-                    <li class="active"><a href="Treatment.php">รายการการรักษา</a></li>
+                    <li class="actives"><a href="Treatment.php">รายการการรักษา</a></li>
                     <li class="disabled-link"><a href="disease.php">การวินิจฉัย</a></li>
                     <li class="disabled-link"><a href="drug.php">การจ่ายยา</a></li>
                 </ul>
@@ -94,31 +94,45 @@ date_default_timezone_set('Asia/Bangkok');
                     $sql = "SELECT * FROM his_treat WHERE HN='$hn'";
                     $result = $conn->query($sql);
 
-                    $sql = "SELECT * FROM link_drug WHERE case_id = (SELECT case_id FROM his_treat WHERE HN='{$_GET['hn']}' ORDER by case_id DESC LIMIT 1)";
-                    $query = mysqli_query($con, $sql);
+                    // $sql1 = "SELECT drug_id FROM link_drug WHERE case_id IN (SELECT case_id FROM his_treat WHERE HN='{$_GET['hn']}' ORDER BY case_id DESC)";
+                    // $query1 = mysqli_query($con, $sql1);
 
-                    $row1 = $query->fetch_assoc();
+        
+                    // $row1 = $query1->fetch_assoc();
+                    // print_r($row1);
 
-                    $sql = "SELECT * FROM link_drug WHERE case_id = (SELECT case_id FROM his_treat WHERE HN='{$_GET['hn']}' ORDER by case_id DESC LIMIT 1)";
-                    $query = mysqli_query($con, $sql);
+                    $sql1 = "SELECT case_id FROM his_treat WHERE HN='{$_GET['hn']}' ORDER BY case_id DESC";
+                    $query1 = mysqli_query($con, $sql1);
+                    $caseIds = array();
+                    while ($row1 = $query1->fetch_assoc()) {
+                        $caseIds[] = $row1['case_id'];
+                    }
+
+                    $sql2 = "SELECT * FROM link_drug WHERE case_id = (SELECT case_id FROM his_treat WHERE HN='{$_GET['hn']}' ORDER by case_id DESC LIMIT 1)";
+                    $query2 = mysqli_query($con, $sql2);
 
                     if ($result->num_rows > 0) {
                         $count = 1;
+                        $count_id = 0;
                         while ($row = $result->fetch_assoc()) {
-                            $sql = "SELECT drug_name FROM drug WHERE drug_id = '{$row1['drug_id']}'";
-                            $query2 = mysqli_query($con, $sql);
-                            $row2 = $query2->fetch_assoc();
-                            $drug_name = $row2["drug_name"];
+                            $sql3 = "SELECT drug_name FROM drug WHERE drug_id = (SELECT drug_id FROM link_drug WHERE case_id = $caseIds[$count_id] LIMIT 1)";
+                            $query3 = mysqli_query($con, $sql3);
+                            $drug = array();
+                            while($row3 = $query3->fetch_assoc()){
+                                $drug[] = $row3["drug_name"];
+                            }
+
 
                             echo "<tr>";
                             echo "<td><div class='d-flex align-items-center'><div class='ms-3'><p class='fw-bold mb-1'>" . $count . "</p></div></div></td>";
                             echo "<td><p class='fw-normal mb-1'>" . $row['date_treat'] . "</p></td>";
-                            echo "<td>" . $drug_name. "</td>";
+                            echo "<td>" .$drug[0]. "</td>";
                             // Add icons for "bin" and "edit" actions
                             echo '<td><button type="button" class="btn btn-outline-primary">Edit</button></td>';
-                            echo '<td><button type="button" class="btn btn-outline-primary">Delete</button></td>';
+                            echo "<td><button class='delete-button' value='{$row['date_treat']}'>Delete</button></td>";
                             echo "</tr>";
                             $count += 1;
+                            $count_id += 1;
                         }
                     } else {
                         echo "<tr><td colspan='5'>No data found</td></tr>";
@@ -127,6 +141,29 @@ date_default_timezone_set('Asia/Bangkok');
                     // Close the database connection
                     $conn->close();
                 ?>
+                <script>
+                    $(document).ready(function () {
+                        $(document).on("click", ".delete-button", function () {
+                            var date = $(this).val();
+
+                            var confirmDelete = confirm("Are you sure you want to delete this record with HN: " + date + "?");
+                            if (confirmDelete) {
+                                $.ajax({
+                                    type: "POST", 
+                                    url: "includes/delete_treatment.php",
+                                    data: { date: date }, 
+                                    success: function(response) {
+                                        alert("Record with HN: " + date + " has been deleted!");
+                                        location.reload();
+                                    },
+                                    error: function(xhr, status, error) {
+                                        alert("An error occurred while deleting the record: " + error);
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
                 </tbody>
                 </table>
 
@@ -156,7 +193,10 @@ date_default_timezone_set('Asia/Bangkok');
                     $(this).toggleClass('active');
                 });
             });
-        </script>
+
+            
+
+    </script>
 
 </body>
 </html>

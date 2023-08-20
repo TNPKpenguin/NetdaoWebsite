@@ -38,7 +38,7 @@
                     <li class="disabled-link"><a href="MeasureH2.php">ข้อมูลสุขภาพ</a></li>
                     <li class="disabled-link"><a href="Treatment.php">รายการการรักษา</a></li>
                     <li class="disabled-link"><a href="disease.php">การวินิจฉัย</a></li>
-                    <li class="active"><a href="drug.php">การจ่ายยา</a></li>
+                    <li class="actives"><a href="drug.php">การจ่ายยา</a></li>
                 </ul>
             </nav>
 

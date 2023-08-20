@@ -5,12 +5,16 @@
     width: 100%;
 }
 
+
 .disabled-link {
     pointer-events: none; /* Disable click events */
     color: #999; /* Change text color to indicate it's disabled */
 }
 
-
+.actives{
+    background-color: #747474;
+    pointer-events: none;
+}
 .input {
     height: 40px;
     background-color: #333;

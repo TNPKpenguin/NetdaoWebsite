@@ -11,7 +11,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $pulse = $_POST["pulse"];
     $breath = $_POST["breath"];
     
-
     try{
         require_once "bdh.inc.php";
 

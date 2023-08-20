@@ -9,7 +9,10 @@
     pointer-events: none; /* Disable click events */
     color: #999; /* Change text color to indicate it's disabled */
 }
-
+.actives{
+    background-color: #747474;
+    pointer-events: none;
+}
 .first-box{
     padding-top: 30px;
     padding-left: 30px;

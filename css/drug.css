@@ -9,7 +9,10 @@
     pointer-events: none; /* Disable click events */
     color: #999; /* Change text color to indicate it's disabled */
 }
-
+.actives{
+    background-color: #747474;
+    pointer-events: none;
+}
 .forth-box{
     width: 100%;
     background-color: rgb(255, 255, 255);
