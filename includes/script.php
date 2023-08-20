@@ -1,5 +1,6 @@
 <script type="text/javascript">
-  $(function(){
+  $(document).ready(function(){
+    var birth = $('date2');
     var provinceObject = $('#province');
     var amphureObject = $('#amphure');
     var districtObject = $('#district');

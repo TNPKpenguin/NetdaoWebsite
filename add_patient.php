@@ -110,7 +110,7 @@ date_default_timezone_set('Asia/Bangkok');
 
                     <div class="row g-3">
                         <div class="col-sm-1">
-                            <label class="visually-hidden" name="pre_name">คำนำหน้า</label>
+                            <label class="visually-hidden" name="pre_name" for="prename">คำนำหน้า</label>
                             <br>
                             <select class="form-select" id="prename" name="prename">
                             <option selected>-</option>
@@ -138,7 +138,7 @@ date_default_timezone_set('Asia/Bangkok');
                                     <div class="col-md-0 col-sm-0 col-xs-0">
                                         
                                         <div class="form-group ">
-                                            <label class="control-label col-sm-2 requiredField" for="date" style="padding-left:33px">
+                                            <label class="control-label col-sm-2 requiredField" for="date2" style="padding-left:33px">
                                                 Date
                                             </label>
                                         <br>
@@ -147,7 +147,7 @@ date_default_timezone_set('Asia/Bangkok');
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
                                                 </div>
-                                            <input class="form-control" id="date2" name="date2" placeholder="MM/DD/YYYY" type="text"/>
+                                            <input class="form-control" id="date2" name="date2" placeholder="MM/DD/YYYY" type="text">
                                             </div>
                                         </div>
                                         </div>
@@ -161,8 +161,8 @@ date_default_timezone_set('Asia/Bangkok');
                             </div>
                         </div>
                         <div class="col-md-4 form-group">
-                            <label for="age">อายุ</label>
-                            <input class="w3-input" type="text" placeholder="" name="age2">
+                            <label for="age2">อายุ</label>
+                            <input class="w3-input" type="text" placeholder="" name="age2" id="age2" disabled/>
                         </div>
                         <div class="col-md-5 form-group">
                             <label for="nationality">สัญชาติ</label>
@@ -188,7 +188,7 @@ date_default_timezone_set('Asia/Bangkok');
                             <input class="w3-input" type="text" placeholder="" name="tel_phone">
                         </div>
                         <div class="col-md-4 form-group">
-                            <label name="tel_home">เบอร์โทรศัพท์บ้าน</label>
+                            <label for="home_tel">เบอร์โทรศัพท์บ้าน</label>
                             <input class="w3-input" type="text" placeholder="" name="home_phone">
                         </div>
                     </div>
@@ -207,7 +207,7 @@ date_default_timezone_set('Asia/Bangkok');
 
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <label for="sel1">จังหวัด:</label>
+                                <label for="province">จังหวัด:</label>
                                 <select class="form-control" name="province" id="province">
                                         <option value="" selected disabled>-กรุณาเลือกจังหวัด-</option>
                                         <?php foreach ($query as $value) { ?>
@@ -219,7 +219,7 @@ date_default_timezone_set('Asia/Bangkok');
 
                         <div class="col-sm-3">
                             <div class="form-group">
-                                    <label for="sel1">อำเภอ:</label>
+                                    <label for="dis">อำเภอ:</label>
                                     <select class="form-control" name="amphure" id="amphure">
                                     </select>
                             </div>
@@ -227,14 +227,14 @@ date_default_timezone_set('Asia/Bangkok');
 
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <label for="sel1">ตำบล:</label>
+                                <label for="subdis">ตำบล:</label>
                                 <select class="form-control" name="district" id="district">
                                 </select>
                             </div>
                         </div>
 
                         <div class="col-sm-3">
-                            <label for="sel1">รหัสไปรษณีย์:</label>
+                            <label for="postcode">รหัสไปรษณีย์:</label>
                             <input type="text" name="zip_code" id="zip_code" class="form-control" readonly value="">
                         </div>
                     </div>
@@ -350,17 +350,28 @@ date_default_timezone_set('Asia/Bangkok');
                     autoclose: true,
                 }).datepicker( 'setDate', today );
             })
-
+            document.getElementById('age2').value = 0;
             $(document).ready(function(){
-                var date_input=$('input[name="date2"]'); //our date input has the name "date"
                 var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-                date_input.datepicker({
+
+                $('#date2').datepicker({
                     format: 'yyyy/mm/dd',
                     container: container,
                     todayHighlight: true,
                     autoclose: true,
                 }).datepicker( 'setDate', today );
-            })
+
+                $('#date2').on('change', function() {
+                    var dob = $(this).val();
+                    calculateAge(dob);
+                });
+
+                function calculateAge(dateOfBirth) {
+                    $.post('includes/calculate_age.php', { dob: dateOfBirth }, function(response) {
+                        document.getElementById('age2').value = response;
+                    });
+                }
+            });
 
             $(document).ready(function () {
                 $('#sidebarCollapse').on('click', function () {

@@ -92,7 +92,7 @@ date_default_timezone_set('Asia/Bangkok');
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
                                                 </div>
-                                            <input class="form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text" value="<?php echo date('d/m/Y',strtotime($row2["reg_date"])) ?>">
+                                            <input class="form-control" id="date" name="date" placeholder="YYYY/MM/DD" type="text" value="<?php echo date('Y/m/d',strtotime($row2["reg_date"])) ?>">
                                             </div>
                                         </div>
                                         </div>
@@ -159,7 +159,7 @@ date_default_timezone_set('Asia/Bangkok');
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
                                                 </div>
-                                            <input class="form-control" id="date2" name="date2" placeholder="MM/DD/YYYY" type="text" value="<?php echo date('d/m/Y',strtotime($row2["birth_date"])) ?>">
+                                            <input class="form-control" id="date2" name="date2" placeholder="YYYY/MM/DD" type="text" value="<?php echo date('Y/m/d',strtotime($row2["birth_date"])) ?>">
                                             </div>
                                         </div>
                                         </div>
@@ -174,7 +174,7 @@ date_default_timezone_set('Asia/Bangkok');
                         </div>
                         <div class="col-md-4 form-group">
                             <label for="age">อายุ</label>
-                            <input class="w3-input" type="text" placeholder="" name="age2">
+                            <input class="w3-input" type="text" placeholder="" name="age2" id="age2">
                         </div>
                         <div class="col-md-5 form-group">
                             <label for="nationality">สัญชาติ</label>
@@ -374,16 +374,29 @@ date_default_timezone_set('Asia/Bangkok');
                 })
             })
 
+            
             $(document).ready(function(){
-                var date_input=$('input[name="date2"]'); //our date input has the name "date"
                 var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-                date_input.datepicker({
+                document.getElementById('age2').value = calculateAge(document.getElementById('date2').value);
+
+                $('#date2').datepicker({
                     format: 'yyyy/mm/dd',
                     container: container,
                     todayHighlight: true,
                     autoclose: true,
                 })
-            })
+
+                $('#date2').on('change', function() {
+                    var dob = $(this).val();
+                    calculateAge(dob);
+                });
+
+                function calculateAge(dateOfBirth) {
+                    $.post('../includes/calculate_age.php', { dob: dateOfBirth }, function(response) {
+                        document.getElementById('age2').value = response;
+                    });
+                }
+            });
 
             $(document).ready(function () {
                 $('#sidebarCollapse').on('click', function () {
