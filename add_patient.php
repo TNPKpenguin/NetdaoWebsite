@@ -282,7 +282,7 @@ date_default_timezone_set('Asia/Bangkok');
                         <div class="up_down" style="margin-right : 40px; margin-left:20px">
                             <input type="radio" name="radio" value="ข้างขึ้น" checked>  ขึ้น
                             <br><br>
-                            <input type="radio" name="radio" value="ข้าางแรม">  แรม
+                            <input type="radio" name="radio" value="ข้างแรม">  แรม
                         </div>                          
 
                         <div class="col-sm-2" id="day">

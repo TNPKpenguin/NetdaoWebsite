@@ -38,6 +38,10 @@ date_default_timezone_set('Asia/Bangkok');
             $sql3 = "select *,p.name_th as pname,d.name_th as dname,s.name_th as sname from address a,provinces p,district d,subdistrict s where a.post_id = s.code and d.code = s.district_code and p.code = d.province_code and HN = '{$_GET['hn']}'";
             $query3 = mysqli_query($con, $sql3);
             $row3 = $query3->fetch_assoc();
+
+            $sql4 = "SELECT * FROM `thai_birth_date` where HN = '{$_GET['hn']}'";
+            $query4 = mysqli_query($con, $sql4);
+            $row4 = $query4->fetch_assoc();
         ?>
         <div class="wrapper">
             <nav id="sidebar">
@@ -290,15 +294,26 @@ date_default_timezone_set('Asia/Bangkok');
             <div class="container mt-5">
                     <div class="row g-3">                    
                         <div class="up_down" style="margin-right : 40px; margin-left:20px">
-                            <input type="radio" name="radio" value="ข้างขึ้น" checked>  ขึ้น
-                            <br><br>
-                            <input type="radio" name="radio" value="ข้าางแรม">  แรม
+                        <?php
+                        if($row4['up_down'] == 'ข้างขึ้น'){
+                            echo'   <input type="radio" name="radio" value="ข้างขึ้น" checked>  ขึ้น
+                                    <br><br>
+                                    <input type="radio" name="radio" value="ข้าางแรม">  แรม
+                                ';
+                        }else{
+                            echo'   <input type="radio" name="radio" value="ข้างขึ้น">  ขึ้น
+                                    <br><br>
+                                    <input type="radio" name="radio" value="ข้าางแรม" checked>  แรม
+                                ';
+                        }
+
+                        ?>
                         </div>                          
 
                         <div class="col-sm-2" id="day">
                             <label id="head-label-day" class="visually-hidden" for="day">วัน</label>
                             <select class="form-select" id="day" style="width:140px;" name="day">
-                            <option selected>-</option>
+                            <option selected><?php echo $row4['day'] ?></option>
                             <option value="อาทิตย์">อาทิตย์</option>
                             <option value="จันทร์">จันทร์</option>
                             <option value="อังคาร">อังคาร</option>
@@ -310,20 +325,21 @@ date_default_timezone_set('Asia/Bangkok');
                         </div>
                         <div class="col-sm-2">        
                             <label id="head-label"  for="kum">ค่ำ</label>
-                            <input class="w3-input" type="text" placeholder="" name="kum">              
+                            <input class="w3-input" type="text" placeholder="" name="kum" value="<?php echo $row4['night'] ?>">              
                         </div>  
 
                         <div class="col-sm-3">                 
                             <label id="head-label"  for="thai_month">เดือนเกิดไทย</label>
-                            <input class="w3-input" type="text" placeholder="" name="thai_month">
+                            <input class="w3-input" type="text" placeholder="" name="thai_month" value="<?php echo $row4['month'] ?>">
                         </div>  
 
                         <div class="col-sm-3">                 
                             <label id="head-label"  for="thai_year">ปีเกิดไทย</label>
-                            <input class="w3-input" type="text" placeholder="" name="thai_year">
+                            <input class="w3-input" type="text" placeholder="" name="thai_year" value="<?php echo $row4['year'] ?>">
                         </div>
                         <div>
                                 <button type="submit">ถัดไป</button>
+                                <button type="button" onclick="window.location.href='../patient.php'">ปิด</button>
                             </div>
                          </div> 
                     </div>
