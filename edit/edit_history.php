@@ -8,7 +8,7 @@
         
     </head>
     <body>
-        <link rel="stylesheet" href="history.css">
+        <link rel="stylesheet" href="../css/history.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <script type="text/javascript" src="https://formden.com/static/cdn/formden.js"></script>
@@ -63,7 +63,7 @@
                 $result = $conn->query($sql);
                 $row = $result->fetch_assoc();
                 if ($result->num_rows > 0) {
-                    echo '<form action=\'includes/edit_history_file.php\' method=\'post\'>';
+                    echo '<form action=\'../includes/edit_history_file.php\' method=\'post\'>';
                     echo '<div class="header">';
                     echo '    <div class="container mt-5">';
                     echo '        <div class="row g-3">';

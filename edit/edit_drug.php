@@ -128,7 +128,7 @@
                                                 echo "<td><p class='fw-normal mb-1'>" . $row['amount'] . "</p></td>";
                                                 echo "<td><div class='d-flex align-items-center'><div class='ms-3'><p class='fw-bold mb-1'>" . $row['sum'] . "</p></div></div></td>";
                                                 echo "<td><p class='fw-normal mb-1'>" . $row['note'] . "</p></td>";
-                                                echo "<td><button class='delete-button' value='{$row['HN']}'>Delete</button></td>";
+                                                echo "<td><button class='delete-button' value=".$_GET['hn'].">Delete</button></td>";
                                                 echo "</tr>";
                                             }
                                         ?>
@@ -293,4 +293,4 @@
     </body>
 </html>
 
-<?php include('includes/script.php');?>
+<?php include('../includes/script.php');?>
