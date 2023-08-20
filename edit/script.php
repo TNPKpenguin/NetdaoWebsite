@@ -17,7 +17,7 @@
         amphureObject.html('<option value="">เลือกอำเภอ</option>');
         districtObject.html('<option value="">เลือกตำบล</option>');
 
-        $.get('includes/get_amphure.php?province_id=' + provinceId, function(data){
+        $.get('../includes/get_amphure.php?province_id=' + provinceId, function(data){
 
           const result = JSON.parse(data);
             $.each(result, function(index, item){
@@ -34,7 +34,7 @@
 
         districtObject.html('<option value="">เลือกตำบล</option>');
         
-        $.get('includes/get_district.php?district_code=' + amphureId, function(data){
+        $.get('../includes/get_district.php?district_code=' + amphureId, function(data){
             var result = JSON.parse(data);
             $.each(result, function(index, item){
                 districtObject.append(
@@ -48,7 +48,7 @@
      districtObject.on('change', function(){
         var postId = $(this).val();
         
-        $.get('includes/get_postcode.php?district_code=' + postId, function(data){
+        $.get('../includes/get_postcode.php?district_code=' + postId, function(data){
             var result = JSON.parse(data);
             document.getElementById('zip_code').value= result[0].zip_code;
         });
@@ -61,7 +61,7 @@
 
         var id = $(this).val();
 
-        $.get('includes/get_namedisease.php?sym_pos=' + id, function(data){
+        $.get('../includes/get_namedisease.php?sym_pos=' + id, function(data){
 
             const result = JSON.parse(data);
 
@@ -81,7 +81,7 @@
 
         drug_name.html('<option value="">-</option>');
 
-        $.get('includes/get_namedrug.php?drug_type=' + type, function(data){
+        $.get('../includes/get_namedrug.php?drug_type=' + type, function(data){
 
         const result = JSON.parse(data);
 

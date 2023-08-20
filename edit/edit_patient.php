@@ -26,7 +26,7 @@ date_default_timezone_set('Asia/Bangkok');
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}</style>
-        <?php include('../includes/script.php');?>
+        <?php include('script.php');?>
         <?php
             $sql_provinces = "SELECT * FROM provinces";
             $query = mysqli_query($con, $sql_provinces);
@@ -46,6 +46,10 @@ date_default_timezone_set('Asia/Bangkok');
             $sql5 = "SELECT about_address FROM address WHERE HN = '{$_GET['hn']}'";
             $query5 = mysqli_query($con, $sql5);
             $row5 = $query5->fetch_assoc();
+
+            $sql6 = "SELECT post_id FROM address WHERE HN = '{$_GET['hn']}'";
+            $query6 = mysqli_query($con, $sql6);
+            $row6 = $query6->fetch_assoc();
 
         ?>
         <div class="wrapper">
@@ -225,7 +229,7 @@ date_default_timezone_set('Asia/Bangkok');
                             <div class="form-group">
                                 <label for="sel1">จังหวัด:</label>
                                 <select class="form-control" name="province" id="province">
-                                        <option value="<?php $row3['pname'] ?>" selected disabled><?php echo $row3['pname'] ?></option>
+                                        <option value="" selected disabled>-</option>
                                         <?php foreach ($query as $value) { ?>
                                         <option value="<?=$value['code']?>"><?=$value['name_th']?></option>
                                         <?php } ?>
@@ -237,7 +241,6 @@ date_default_timezone_set('Asia/Bangkok');
                             <div class="form-group">
                                     <label for="sel1">อำเภอ:</label>
                                     <select class="form-control" name="amphure" id="amphure">
-                                    <option value="<?php $row3['dname'] ?>" selected disabled><?php echo $row6['dname'] ?></option>
                                     </select>
                             </div>
                         </div>
@@ -246,14 +249,13 @@ date_default_timezone_set('Asia/Bangkok');
                             <div class="form-group">
                                 <label for="sel1">ตำบล:</label>
                                 <select class="form-control" name="district" id="district">
-                                <option value="<?php $row3['sname'] ?>" selected disabled><?php echo $row6['sname'] ?></option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="col-sm-3">
                             <label for="sel1">รหัสไปรษณีย์:</label>
-                            <input type="text" name="zip_code" id="zip_code" class="form-control" readonly value="<?php echo $row6['zip_code'] ?>">
+                            <input type="text" name="zip_code" id="zip_code" class="form-control" readonly value="<?php echo $row6['post_id'] ?>">
                         </div>
                     </div>
                     </div>    
@@ -409,3 +411,4 @@ date_default_timezone_set('Asia/Bangkok');
         </script>
     </body>
 </html>
+<?php include('script.php');?>
