@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+        <?php include('script.php');?>
         <link rel="stylesheet" href="../css/drug.css">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -52,7 +53,7 @@
                 <!-- Add your content here on the right side of the sidebar -->
         <div class="content-right">
 
-        <form action="includes/insert_drug.php" method="post">
+        <form action="../includes/insert_drug_edit.php" method="post">
         <div class="header">
                 <div class=container mt-5>
                         <div class="row g-3">
@@ -119,7 +120,6 @@
                                                 $row3 = $query3->fetch_assoc();
                                                 $drug_type = $row3["drug_type"];
 
-                                                
                                                 echo "<tr>";
                                                 echo "<td><div class='d-flex align-items-center'><div class='ms-3'><p class='fw-bold mb-1'>" . $drug_type . "</p></div></div></td>";
                                                 echo "<td><p class='fw-normal mb-1'>" . $drug_name . "</p></td>";
@@ -128,7 +128,7 @@
                                                 echo "<td><p class='fw-normal mb-1'>" . $row['amount'] . "</p></td>";
                                                 echo "<td><div class='d-flex align-items-center'><div class='ms-3'><p class='fw-bold mb-1'>" . $row['sum'] . "</p></div></div></td>";
                                                 echo "<td><p class='fw-normal mb-1'>" . $row['note'] . "</p></td>";
-                                                echo "<td><button class='delete-button' value=".$_GET['hn'].">Delete</button></td>";
+                                                echo "<td><button type='button' class='delete-button' value=".$row['case_id'].",".$row['drug_no']."".">Delete</button></td>";
                                                 echo "</tr>";
                                             }
                                         ?>
@@ -192,7 +192,7 @@
                                                     <label id="head-label" class="visually-hidden" for="inlineFormSelectPref">ประเภทยา</label>
                                                     <select class="form-select" id="drug_type">
                                                     <option selected disabled>-</option>
-                                                        <?php include('drug_type.php'); ?>
+                                                        <?php include('../drug_type.php'); ?>
                                                     </select>
                                                 </div>
 
@@ -202,7 +202,7 @@
                                                     <label id="head-label" class="visually-hidden" for="inlineFormSelectPref">ชื่อยา</label>
                                                     <select class="form-select" id="drug_name" name="drug_name">
                                                     </select>
-                                            </div>
+                                                </div>
                                                 
                                                 <br>
                                                 <div class="up-down">
@@ -257,10 +257,10 @@
                         </div>
                     </div>
                                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                        <a href="Treatment.php?hn=<?php echo $_GET['hn']; ?>">
+                                        <a href="../Treatment.php?hn=<?php echo $_GET['hn']; ?>">
                                             <button type="button" class="btn btn-primary">ถัดไป</button>
                                         </a>
-                                        <a href="patient.php" style="margin-left:30px">
+                                        <a href="../patient.php" style="margin-left:30px">
                                             <button type="button" class="btn btn-primary">จบการทำงาน</button>
                                         </a>
                                     </div>
@@ -288,9 +288,34 @@
                     $(this).toggleClass('active');
                 });
             });
+
+            $(document).ready(function () {
+                $(document).on("click", ".delete-button", function () {
+                    var hn = $(this).val();
+                    sub = hn.split(",");
+                    var confirmDelete = confirm("Are you sure you want to delete this record ?");
+                    if (confirmDelete) {
+
+                        $.ajax({
+                            type: "POST", 
+                            url: "../includes/delete_drug.php",
+                            data: { case: sub[0], no: sub[1]}, 
+                            success: function(response) {
+                                alert("Record has been deleted!");
+                                location.reload();
+                            },
+                            error: function(xhr, status, error) {
+                                alert("An error occurred while deleting the record: " + error);
+                            }
+                        });
+                    }else{
+                        alert("Cancled");
+                    }
+                });
+            });
         </script>
 
     </body>
 </html>
 
-<?php include('../includes/script.php');?>
+<?php include('script.php');?>
