@@ -14,6 +14,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     try{
         require_once "bdh.inc.php";
 
+<<<<<<< Updated upstream
         $query = "UPDATE bio_information SET date_measure=?, weight=?, height=?, pulse=?,	breath=?,	temperature=?, blood_pressure=? WHERE hn = ?";
 
         $stmt = $pdo->prepare($query);
