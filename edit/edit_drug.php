@@ -53,7 +53,7 @@
                 <!-- Add your content here on the right side of the sidebar -->
         <div class="content-right">
 
-        <form action="../includes/insert_drug_edit.php" method="post">
+        <form action="../includes/insert_update_drug.php" method="post">
         <div class="header">
                 <div class=container mt-5>
                         <div class="row g-3">
@@ -145,12 +145,7 @@
                             </thead>
                             <tbody>
                                 <?php
-                                    $sql = "SELECT * FROM link_drug WHERE case_id = (SELECT case_id FROM his_treat WHERE HN='{$_GET['hn']}' ORDER by case_id DESC LIMIT 1)";
-                                    $query = mysqli_query($con, $sql);
-
-                                    $row = $query->fetch_assoc();
-
-                                    $sql = "SELECT * FROM link_drug WHERE case_id = (SELECT case_id FROM his_treat WHERE HN='{$_GET['hn']}' ORDER by case_id DESC LIMIT 1)";
+                                    $sql = "SELECT * FROM link_drug WHERE case_id = {$_GET['case_id']}";
                                     $query = mysqli_query($con, $sql);
 
                                     while ($row = $query->fetch_assoc()) {
@@ -233,16 +228,11 @@
                                             </div> 
 
 
-                                            <!-- <div class="col-sm-2">        
-                                                    <label id="head-label"  for="email">สรุป</label>
-                                                    <input type="text" class="form-control" placeholder="เบอร์ผู้ติดต่อ" aria-label="State">        
-                                            </div>   -->
+                                            <input type="hidden" id="version" name="case_id" value="<?php echo $_GET['case_id'] ?>" />
                                         </div>
                                         <div class="col-md-11 form-group" style="margin-top:20px">
                                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                <a href="patient.php" style="margin-left:30px">
                                                 <button type="submit">บันทึก</button>
-                                                
                                             </div>
                                         </div>
                                     </div>
