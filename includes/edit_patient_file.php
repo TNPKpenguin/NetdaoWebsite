@@ -6,6 +6,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     if (isset($_POST["prename"])) {
         $prename = $_POST["prename"];
+        echo "prename Selected pre-name: " . $prename;
     } else {
         echo "Pre-name is not selected!";
     }
@@ -23,6 +24,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     if (isset($_POST["province"])) {
         $province = $_POST["province"];
+        echo "province Selected pre-name: " . $province;
     } else {
         echo "province is not selected!";
     }
@@ -30,6 +32,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     if (isset($_POST["amphure"])) {
         $aumphur = $_POST["amphure"];
+        echo "aumphur Selected pre-name: " . $aumphur;
     } else {
         echo "aumphur is not selected!";
     }
@@ -37,6 +40,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     if (isset($_POST["district"])) {
         $tambon = $_POST["district"];
+        echo "tambon Selected pre-name: " . $tambon;
     } else {
         echo "tambon is not selected!";
     }
@@ -48,6 +52,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $relation_phone = $_POST["relation_phone"];
     if (isset($_POST["radio"])) {
         $up_or_down = $_POST["radio"];
+        echo "up down Selected option: " . $up_or_down;
     } else {
         echo "up down Please select an option";
     }
@@ -57,7 +62,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $thai_year = $_POST["thai_year"];
 
     try{
-        require_once "bdh.inc.php";
+        require_once "../includes/bdh.inc.php";
+        $query_thai_birth = "INSERT INTO thai_birth_date (HN, day, up_down, night, month, year) VALUES (?, ?, ?, ?, ?, ?)";
 
         $query = "UPDATE patient SET reg_date=?,id_person=?,fname=?,lname=?,birth_date=?,career=?,
         home_tel=?,phone_tel=?,nationality=?,p_status=?,contact_fname=?,contact_lname=?,
@@ -83,9 +89,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         header("Location: ../edit/edit_history.php?hn=".$_POST['hn']);
         die();
     }catch(PDOException $e){
-        echo $e;
+        echo "error";
     }
     
 }else{
+    // header("Location: ../add_patient.php");
     echo "error";
 }
