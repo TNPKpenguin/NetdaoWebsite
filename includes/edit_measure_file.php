@@ -14,11 +14,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     try{
         require_once "bdh.inc.php";
 
-        $query = "UPDATE bio_information SET date_measure=?, weight=?, height=?, pulse=?,	breath=?,	temperature=?, blood_pressure=? WHERE hn = ?";
+        $query = "UPDATE bio_information SET weight=?, height=?, pulse=?,	breath=?,	temperature=?, blood_pressure=? WHERE hn = ? and date_measure=?";
 
         $stmt = $pdo->prepare($query);
 
-        $stmt->execute([$date_time_thai, $weight, $height, $pulse, $breath,  $temp, $blood_pressure,  $hn]);
+        $stmt->execute([$weight, $height, $pulse, $breath,  $temp, $blood_pressure, $hn,$date_time_thai]);
 
         $pdo = null;
         $stmt = null;
