@@ -1,0 +1,45 @@
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    try {
+        require_once "bdh.inc.php"; // Assuming this file establishes the PDO connection
+
+        $hn = $_POST["hn"];
+        $date = $_POST["date"];
+        // ... (rest of the form field assignments)
+
+        // Ensure that required fields are set
+        if (!isset($_POST["prename"], $_POST["province"], $_POST["amphure"], $_POST["district"], $_POST["radio"])) {
+            throw new Exception("Required fields are missing.");
+        }
+
+        // Update patient information
+        $updatePatientQuery = "UPDATE patient SET reg_date=?,id_person=?,fname=?,lname=?,birth_date=?,career=?,"
+            . "home_tel=?,phone_tel=?,nationality=?,p_status=?,contact_fname=?,contact_lname=?,"
+            . "contact_relationship=?,contact_tel=?,pre_name=? WHERE HN = ?";
+        
+        $updateAddressQuery = "UPDATE address SET post_id=?,about_address=? WHERE HN=?";
+        
+        $updateThaiBirthQuery = "UPDATE thai_birth_date SET day=?,up_down=?,night=?,month=?,year=? WHERE HN=?";
+        
+        $stmtPatient = $pdo->prepare($updatePatientQuery);
+        $stmtAddress = $pdo->prepare($updateAddressQuery);
+        $stmtThaiBirth = $pdo->prepare($updateThaiBirthQuery);
+
+        // Execute the prepared statements
+        $stmtPatient->execute([$date, $id, $name, $lastname, $date2, $work, $home_phone, $tel_phone, $nationality,
+            $status, $relation_name, $relation_lastname, $relationship, $relation_phone, $prename, $hn]);
+
+        $stmtAddress->execute([$postcode, $address, $hn]);
+
+        $stmtThaiBirth->execute([$day, $up_or_down, $kum, $thai_month, $thai_year, $hn]);
+
+        // Redirect after successful update
+        header("Location: ../edit/edit_history.php?hn=" . $_POST['hn']);
+        exit();
+    } catch (Exception $e) {
+        echo "An error occurred: " . $e->getMessage();
+    }
+} else {
+    echo "Invalid request.";
+}
+?>
