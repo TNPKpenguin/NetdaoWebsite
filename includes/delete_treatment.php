@@ -1,29 +1,52 @@
 <?php
+try{
+    $conn = mysqli_connect("localhost","root","","ndclinic") or die("Error: " . mysqli_error($conn));
+    mysqli_query($conn, "SET NAMES 'utf8' ");
+    error_reporting( error_reporting() & ~E_NOTICE );
+    date_default_timezone_set('Asia/Bangkok');
 
-$servername = "127.0.0.1";
-$username = "root";
-$password = "";
-$dbname = "ndclinic";
+    $stmt = $conn->prepare("DELETE FROM his_treat WHERE case_id = ?");
+    $stmt->bind_param("i", $_GET['case_id']);
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["date"])) {
-    $date = $_POST["date"];
-
-    $stmt5 = $conn->prepare("DELETE FROM link_drug WHERE date_treat = ?");
-    $stmt5->bind_param("s", $date);
-    if ($stmt5->execute()) {
-        echo "Drug link record deleted successfully<br>";
+    if ($stmt->execute()) {
+        // Deletion successful
+        echo "Product deleted successfully.";
     } else {
-        echo "Error deleting drug link record: " . $stmt5->error . "<br>";
+        // Deletion failed
+        echo "Error deleting product: " . $conn->error;
     }
-     $stmt5->close();
+
+    $stmt->close();
+
+    $stmt2 = $conn->prepare("DELETE FROM link_sym WHERE case_id = ?");
+    $stmt2->bind_param("i", $_GET['case_id']);
+
+    if ($stmt2->execute()) {
+        // Deletion successful
+        echo "Product deleted successfully.";
+    } else {
+        // Deletion failed
+        echo "Error deleting product: " . $conn->error;
+    }
+
+    $stmt2->close();
+
+    $stmt3 = $conn->prepare("DELETE FROM link_drug WHERE case_id = ?");
+    $stmt3->bind_param("i", $_GET['case_id']);
+
+    if ($stmt3->execute()) {
+        // Deletion successful
+        echo "Product deleted successfully.";
+    } else {
+        // Deletion failed
+        echo "Error deleting product: " . $conn->error;
+    }
+
+    $stmt3->close();
+
+    header("Location: ../Treatment.php?hn=".$_GET['hn']);
+    die();
+}catch(PDOException $e){
+    die("Query failed: ".$e->getMessage());
 }
-
-$conn->close();
-
 ?>

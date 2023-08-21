@@ -9,6 +9,7 @@
     var name_disease = $('#name_disease');
     var drug_type = $('#drug_type');
     var drug_name = $('#drug_name');
+    var sytem_diseaseEdit = $('#sytem_disease_edit');
 
     // on change province
     provinceObject.on('change', function(){
@@ -72,6 +73,25 @@
             });
         });
     })
+
+    //on change disease
+    sytem_diseaseEdit.on('change',function(){
+
+name_disease.html('<option value="">-</option>');
+
+var id = $(this).val();
+
+$.get('../includes/get_namedisease.php?sym_pos=' + id, function(data){
+
+    const result = JSON.parse(data);
+
+    $.each(result, function(index, item){
+        name_disease.append(
+            $('<option></option>').val(item.sym_id).html(item.sym_name)
+        );
+    });
+});
+})
 
     //on change disease
     drug_type.on('change',function(){

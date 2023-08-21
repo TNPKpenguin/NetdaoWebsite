@@ -114,8 +114,8 @@ date_default_timezone_set('Asia/Bangkok');
                             }
                             echo "</td>";
                             // Add icons for "bin" and "edit" actions
-                            echo '<td><button type="button" class="btn btn-outline-primary">Edit</button></td>';
-                            echo "<td><button class='delete-button' value='{$row['date_treat']}'>Delete</button></td>";
+                            echo '<td><a href="edit/edit_disease.php?hn='.$_GET['hn'].'&case_id='.$row['case_id'].'"><button type="button" class="btn btn-outline-primary">Edit</button></a></td>';
+                            echo "<td><button class='delete-button' type='button' onclick='cDel(".$row['case_id'].",\"".$row['date_treat']."\",\"".$_GET['hn']."\");'>Delete</button></td>";
                             echo "</tr>";
                             $count += 1;
                             $count_id += 1;
@@ -128,27 +128,15 @@ date_default_timezone_set('Asia/Bangkok');
                     $conn->close();
                 ?>
                 <script>
-                    $(document).ready(function () {
-                        $(document).on("click", ".delete-button", function () {
-                            var date = $(this).val();
+                   function cDel (case_id,date_treat,hn) {
+                        var com = confirm("Are you sure you want to delete this record?"+date_treat);
 
-                            var confirmDelete = confirm("Are you sure you want to delete this record with HN: " + date + "?");
-                            if (confirmDelete) {
-                                $.ajax({
-                                    type: "POST", 
-                                    url: "includes/delete_treatment.php",
-                                    data: { date: date }, 
-                                    success: function(response) {
-                                        alert("Record with HN: " + date + " has been deleted!");
-                                        location.reload();
-                                    },
-                                    error: function(xhr, status, error) {
-                                        alert("An error occurred while deleting the record: " + error);
-                                    }
-                                });
-                            }
-                        });
-                    });
+                        if(com === true){
+                            window.location.href="includes/delete_treatment.php?case_id="+case_id+"&date_treat="+date_treat+"&hn="+hn;
+                        }else{
+                            alert("cancel to delete!");
+                        }
+                    }
                 </script>
                 </tbody>
                 </table>
@@ -171,7 +159,6 @@ date_default_timezone_set('Asia/Bangkok');
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="javascript/store.js"></script>
   <script>
             $(document).ready(function () {
                 $('#sidebarCollapse').on('click', function () {
@@ -179,9 +166,6 @@ date_default_timezone_set('Asia/Bangkok');
                     $(this).toggleClass('active');
                 });
             });
-
-            
-
     </script>
 
 </body>
