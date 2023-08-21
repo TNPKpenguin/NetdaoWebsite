@@ -11,34 +11,9 @@
 </head>
 
 <body>
-    <h3 id="signup">Signup</h3>
-    <main>
-        <form action="includes/insert_patient.php" method="post">
-            <label for="hn">เลขที่ทั่วไป?</label>
-            <input required id="hn" type="text" name="hn" placeholder="เลขที่ทั่วไป...">
-            
-            <br>
-
-            <label for="id">เลขบัตรประชาชน?</label>
-            <input id="id" type="text" name="id" placeholder="เลขบัตรประชาชน...">
-            
-            <br>
-
-            <label for="name">ชื่อ-นามสกุล?</label>
-            <input id="name" type="text" name="name" placeholder="ชื่อ - นามสกุล...">
-            <!-- <select id="favouritepet" name="favouritepet">
-                <option value="none">None</option>
-                <option value="dog">Dog</option>
-                <option value="cat">Cat</option>
-            </select> -->
-
-            <br>
-            <a href="patient.php">
-                <button type="submit" >Submit</button>
-            </a>
-        </form>
-    </main>
-
+    <center><h1>Netdao Website</h3></center>
+    <center><a href="http://10.152.5.38/netdao/patient.php"><button style="padding-top:10px; padding-left:10px; padding-bottom:10px; padding-right:10px; margin:0px; margin-bottom:20px;">ไปหน้ากรอกข้อมูล คลิ๊ก!</button></a></center>
+    <center><img src="src/netdao logo.png"></center>
 </body>
 
 </html>

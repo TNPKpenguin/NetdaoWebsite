@@ -218,13 +218,13 @@
 
                                             <div class="col-sm-2">        
                                                     <label id="head-label"  for="email">จำนวนต่อครั้ง</label>
-                                                    <input type="text" name="amount" id="amount" class="form-control" placeholder="เบอร์ผู้ติดต่อ" aria-label="State">
+                                                    <input type="text" name="amount" id="amount" class="form-control" placeholder="จำนวนต่อครั้ง" aria-label="State">
                                                     
                                             </div> 
                                                
                                             <div class="col-sm-2">        
                                                     <label id="head-label"  for="email">จำนวนวัน</label>
-                                                    <input type="text" name="perday" id="perday" class="form-control" placeholder="เบอร์ผู้ติดต่อ" aria-label="State">   
+                                                    <input type="text" name="perday" id="perday" class="form-control" placeholder="จำนวนวัน" aria-label="State">   
                                             </div> 
 
 
@@ -232,7 +232,7 @@
                                         </div>
                                         <div class="col-md-11 form-group" style="margin-top:20px">
                                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                <button type="submit">บันทึก</button>
+                                                <button type="submit" class="btn btn-primary">บันทึก</button>
                                             </div>
                                         </div>
                                     </div>
