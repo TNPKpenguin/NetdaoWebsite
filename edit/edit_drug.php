@@ -100,13 +100,7 @@
                                     </thead>
                                     <tbody>
                                     <?php
-                                            $sql = "SELECT * FROM link_drug WHERE case_id = (SELECT case_id FROM his_treat WHERE HN='{$_GET['hn']}' ORDER by case_id DESC LIMIT 1)";
-                                            $query = mysqli_query($con, $sql);
-
-                                            $row = $query->fetch_assoc();
-
-
-                                            $sql = "SELECT * FROM link_drug WHERE case_id = (SELECT case_id FROM his_treat WHERE HN='{$_GET['hn']}' ORDER by case_id DESC LIMIT 1)";
+                                            $sql = "SELECT * FROM link_drug WHERE case_id = {$_GET['case_id']}";
                                             $query = mysqli_query($con, $sql);
 
                                             while ($row = $query->fetch_assoc()) {

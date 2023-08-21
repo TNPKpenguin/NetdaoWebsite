@@ -115,6 +115,7 @@ date_default_timezone_set('Asia/Bangkok');
                                 <label for="exampleFormControlTextarea1">ประวัติการเจ็บป่วย</label>
                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="6" name="des"></textarea>
                             </div>
+                            <input type="hidden" id="version" name="case_id" value="<?php echo $_GET['case_id'] ?>" />
                             <button type="submit" class="btn btn-primary">บันทึก</button>
                         </form>
 
@@ -139,7 +140,7 @@ date_default_timezone_set('Asia/Bangkok');
                             echo "<tr>";
                             echo "<td><div class='d-flex align-items-center'><div class='ms-3'><p class='fw-bold mb-1'>" . $row2['sym_no'] . "</p></div></div></td>";
                             echo "<td><p class='fw-normal mb-1'>" . $row2['sym_name'] . "</p></td>";
-                            echo "<td><button class='delete-button' type='button' onclick='window.location.href=\"../includes/delete_disease.php?sym_no={$row2['sym_no']}&case_id={$_GET['case_id']}&hn={$_GET['hn']}\"'>Delete</button></td>";
+                            echo "<td><button class='delete-button' type='button' onclick='cDel(".$row2['sym_no'].",\"".$_GET['case_id']."\",\"".$_GET['hn']."\");'>Delete</button></td>";
                             echo "</tr>";
                         }
                         ?>
@@ -151,7 +152,7 @@ date_default_timezone_set('Asia/Bangkok');
                         $row3 = $query3->fetch_assoc();
 
                         if($row3['count(*)'] > 0){
-                            echo (' <a href=\'drug.php?hn='.$_GET['hn'].'\'>
+                            echo (' <a href=\'edit_drug.php?hn='.$_GET['hn'].'&case_id='.$_GET['case_id'].'\'>
                                     <button type="button" class="btn btn-primary">ถัดไป</button>
                                     </a>');
                         }
@@ -163,7 +164,17 @@ date_default_timezone_set('Asia/Bangkok');
         </div>
     </div>
 </div>       
+                <script>
+                   function cDel (sym_no,case_id,hn) {
+                        var com = confirm("Are you sure you want to delete this record?"+sym_no);
 
+                        if(com === true){
+                            window.location.href="../includes/delete_disease.php?sym_no="+sym_no+"&case_id="+case_id+"&hn="+hn;
+                        }else{
+                            alert("cancel to delete!");
+                        }
+                    }
+                </script>
   <!-- Link Bootstrap JS and jQuery -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
