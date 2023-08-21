@@ -103,7 +103,7 @@
                     echo '            </div>';
                     echo '            <div class="col-md-12 form-group" style="width:100%; margin-top:30px">';
                     echo '                <div class="d-grid gap-2 d-md-flex justify-content-md-end">';
-                    echo '                    <button type="submit">ถัดไป</button>';
+                    echo '                    <button class="btn btn-primary" type="submit">ถัดไป</button>';
                     echo '                </div>';
                     echo '            </div>';
                     echo '        </div>';

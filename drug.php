@@ -245,7 +245,7 @@
                                         <div class="col-md-11 form-group" style="margin-top:20px">
                                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                                 <a href="patient.php" style="margin-left:30px">
-                                                <button type="submit">บันทึก</button>
+                                                <button class="btn btn-primary p-3" type="submit">บันทึก</button>
                                                 
                                             </div>
                                         </div>

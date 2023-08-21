@@ -115,7 +115,7 @@ date_default_timezone_set('Asia/Bangkok');
                             echo "</td>";
                             // Add icons for "bin" and "edit" actions
                             echo '<td><a href="edit/edit_disease.php?hn='.$_GET['hn'].'&case_id='.$row['case_id'].'"><button type="button" class="btn btn-outline-primary">Edit</button></a></td>';
-                            echo "<td><button class='delete-button' type='button' onclick='cDel(".$row['case_id'].",\"".$row['date_treat']."\",\"".$_GET['hn']."\");'>Delete</button></td>";
+                            echo "<td><button class='btn btn-outline-danger' type='button' onclick='cDel(".$row['case_id'].",\"".$row['date_treat']."\",\"".$_GET['hn']."\");'>Delete</button></td>";
                             echo "</tr>";
                             $count += 1;
                             $count_id += 1;

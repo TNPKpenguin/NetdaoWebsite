@@ -32,7 +32,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     if (isset($_POST["amphure"])) {
         $aumphur = $_POST["amphure"];
-        echo "aumphur Selected pre-name: " . $amphure;
+        echo "aumphur Selected pre-name: " . $aumphur;
     } else {
         echo "aumphur is not selected!";
     }

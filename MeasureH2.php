@@ -127,7 +127,7 @@ date_default_timezone_set('Asia/Bangkok');
 
                         <div class="col-md-12 form-group" style="width:100%; margin-top:30px">
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                    <button type="submit">ถัดไป</button>
+                                    <button class="btn btn-primary" type="submit">ถัดไป</button>
                                 </div>
                             </div>
                 </div>

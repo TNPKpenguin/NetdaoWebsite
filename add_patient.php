@@ -313,7 +313,7 @@ date_default_timezone_set('Asia/Bangkok');
                             <input class="w3-input" type="text" placeholder="" name="thai_year">
                         </div>
                         <div>
-                                <button type="submit">ถัดไป</button>
+                                <button class="btn btn-primary" type="submit">ถัดไป</button>
                             </div>
                          </div> 
                     </div>

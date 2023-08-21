@@ -342,8 +342,8 @@ date_default_timezone_set('Asia/Bangkok');
                             <input class="w3-input" type="text" placeholder="" name="thai_year" value="<?php echo $row4['year'] ?>">
                         </div>
                         <div>
-                                <button type="submit">บันทึกการแก้ไข</button>
-                                <button type="button" onclick="window.location.href='../patient.php'">ปิด</button>
+                                <button type="submit" class="btn btn-primary">บันทึกการแก้ไข</button>
+                                <button type="button" class="btn btn-primary" onclick="window.location.href='../patient.php'">ปิด</button>
                             </div>
                          </div> 
                     </div>

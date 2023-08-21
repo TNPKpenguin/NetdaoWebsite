@@ -4,6 +4,25 @@
     <title>Dynamic Search</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+    .custom-button {
+      padding-bottom: 30px; /* Adjust the value as needed */
+    }
+    .delete-button{
+      background: transparent;
+      border: 2px solid red;
+      border-radius: 5px;
+      padding: 5px;
+      color:red;
+    }
+    .delete-button:hover{
+      background: red;
+      border: 2px solid red;
+      border-radius: 5px;
+      padding: 5px;
+      color:white;
+    }
+    </style>
 </head>
 <body>
     <br>
@@ -29,8 +48,8 @@
 </div>
 <br>
 <br>
-<div align="right">
-<a href="add_patient.php"><button type="submit">Add</button></a>
+<div align="right" class='custom-button'>
+<a href="add_patient.php"><button class="btn btn-primary" type="submit">Add</button></a>
 </div>
 
 <script>
