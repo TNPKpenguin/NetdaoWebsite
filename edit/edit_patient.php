@@ -26,7 +26,7 @@ date_default_timezone_set('Asia/Bangkok');
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}</style>
-        <?php include('../includes/script.php');?>
+        <?php include('script.php');?>
         <?php
             $sql_provinces = "SELECT * FROM provinces";
             $query = mysqli_query($con, $sql_provinces);
@@ -42,6 +42,15 @@ date_default_timezone_set('Asia/Bangkok');
             $sql4 = "SELECT * FROM `thai_birth_date` where HN = '{$_GET['hn']}'";
             $query4 = mysqli_query($con, $sql4);
             $row4 = $query4->fetch_assoc();
+
+            $sql5 = "SELECT about_address FROM address WHERE HN = '{$_GET['hn']}'";
+            $query5 = mysqli_query($con, $sql5);
+            $row5 = $query5->fetch_assoc();
+
+            $sql6 = "SELECT post_id FROM address WHERE HN = '{$_GET['hn']}'";
+            $query6 = mysqli_query($con, $sql6);
+            $row6 = $query6->fetch_assoc();
+
         ?>
         <div class="wrapper">
             <nav id="sidebar">
@@ -68,7 +77,7 @@ date_default_timezone_set('Asia/Bangkok');
                 <!-- Add your content here on the right side of the sidebar -->
         <div class="content-right">
         <main>
-        <form action="../includes/update_patient.php" method="post"> 
+        <form action="../includes/edit_patient_file.php" method="post"> 
         <div class="header">
             <div class=container mt-5>
                     <div class="row g-3">
@@ -125,12 +134,11 @@ date_default_timezone_set('Asia/Bangkok');
                             <label class="visually-hidden" name="pre_name">คำนำหน้า</label>
                             <br>
                             <select class="form-select" id="prename" name="prename">
-                            <option selected><?php echo $row2['pre_name'] ?></option>
-                            <option value="นาย">นาย</option>
-                            <option value="นาง">นาง</option>
-                            <option value="นางสาว">นางสาว</option>
-                            <option value="เด็กชาย">เด็กชาย</option>
-                            <option value="เด็กหญิง">เด็กหญิง</option>
+                                <option value="นาย" <?php if ($row2['pre_name'] === 'นาย') echo 'selected'; ?>>นาย</option>
+                                <option value="นาง" <?php if ($row2['pre_name'] === 'นาง') echo 'selected'; ?>>นาง</option>
+                                <option value="นางสาว" <?php if ($row2['pre_name'] === 'นางสาว') echo 'selected'; ?>>นางสาว</option>
+                                <option value="เด็กชาย" <?php if ($row2['pre_name'] === 'เด็กชาย') echo 'selected'; ?>>เด็กชาย</option>
+                                <option value="เด็กหญิง" <?php if ($row2['pre_name'] === 'เด็กหญิง') echo 'selected'; ?>>เด็กหญิง</option>
                             </select>
                         </div>
                         <div class="col-sm-6">
@@ -185,12 +193,12 @@ date_default_timezone_set('Asia/Bangkok');
                             <label class="visually-hidden" for="status">สถานภาพ</label>
                             <br>
                             <select class="form-select" id="inlineFormSelectPref" name="status">
-                            <option selected><?php echo $row2['p_status'] ?></option>
-                            <option value="โสด">โสด</option>
-                            <option value="หม้าย">หม้าย</option>
-                            <option value="หย่าร้าง">หย่าร้าง</option>
+                                <option value="โสด" <?php if ($row2['p_status'] === 'โสด') echo 'selected'; ?>>โสด</option>
+                                <option value="หม้าย" <?php if ($row2['p_status'] === 'หม้าย') echo 'selected'; ?>>หม้าย</option>
+                                <option value="หย่าร้าง" <?php if ($row2['p_status'] === 'หย่าร้าง') echo 'selected'; ?>>หย่าร้าง</option>
                             </select>
                         </div>
+
                         <div class="col-md-3 form-group">
                             <label for="work">อาชีพ</label>
                             <input class="w3-input" type="text" placeholder="" name="work" value="<?php echo $row2['career'] ?>">
@@ -213,7 +221,7 @@ date_default_timezone_set('Asia/Bangkok');
                     <div class="row g-3">
                         <div class="col-md-12 form-group">
                             <label id="head-label" for="address">ที่อยู่ปัจจุบัน</label>
-                            <input class="w3-input" type="text" placeholder="" name="address" value="<?php echo $row3['about_address'] ?>">
+                            <input class="w3-input" type="text" placeholder="" name="address" value="<?php echo $row5['about_address'] ?>">
                         </div>
 
 
@@ -221,7 +229,7 @@ date_default_timezone_set('Asia/Bangkok');
                             <div class="form-group">
                                 <label for="sel1">จังหวัด:</label>
                                 <select class="form-control" name="province" id="province">
-                                        <option value="<?php $row3['pname'] ?>" selected disabled><?php echo $row3['pname'] ?></option>
+                                        <option value="" selected disabled>-</option>
                                         <?php foreach ($query as $value) { ?>
                                         <option value="<?=$value['code']?>"><?=$value['name_th']?></option>
                                         <?php } ?>
@@ -233,7 +241,6 @@ date_default_timezone_set('Asia/Bangkok');
                             <div class="form-group">
                                     <label for="sel1">อำเภอ:</label>
                                     <select class="form-control" name="amphure" id="amphure">
-                                    <option value="<?php $row3['dname'] ?>" selected disabled><?php echo $row3['dname'] ?></option>
                                     </select>
                             </div>
                         </div>
@@ -242,14 +249,13 @@ date_default_timezone_set('Asia/Bangkok');
                             <div class="form-group">
                                 <label for="sel1">ตำบล:</label>
                                 <select class="form-control" name="district" id="district">
-                                <option value="<?php $row3['sname'] ?>" selected disabled><?php echo $row3['sname'] ?></option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="col-sm-3">
                             <label for="sel1">รหัสไปรษณีย์:</label>
-                            <input type="text" name="zip_code" id="zip_code" class="form-control" readonly value="<?php echo $row3['zip_code'] ?>">
+                            <input type="text" name="zip_code" id="zip_code" class="form-control" readonly value="<?php echo $row6['post_id'] ?>">
                         </div>
                     </div>
                     </div>    
@@ -263,11 +269,10 @@ date_default_timezone_set('Asia/Bangkok');
                         <div class="col-sm-2">
                             <label id="head-label" class="visually-hidden" for="pre_name2">เกี่ยวข้องเป็น</label>
                             <select class="form-select" id="prename" name="relationship" style="width:130px">
-                            <option selected ><?php echo $row2['contact_relationship'] ?></option>
-                            <option value="พ่อ">พ่อ</option>
-                            <option value="แม่">แม่</option>
-                            <option value="ญาติ">ญาติ</option>
-                            <option value="อื่นๆ">อื่นๆ</option>
+                            <option value="พ่อ" <?php if ($row2['contact_relationship'] == "พ่อ") echo 'selected';?>>พ่อ</option>
+                            <option value="แม่" <?php if ($row2['contact_relationship'] == "แม่") echo 'selected';?>>แม่</option>
+                            <option value="ญาติ" <?php if ($row2['contact_relationship'] == "ญาติ") echo 'selected';?>>ญาติ</option>
+                            <option value="อื่นๆ" <?php if ($row2['contact_relationship'] == "อื่นๆ") echo 'selected';?>>อื่นๆ</option>
                             </select>
                         </div>
 
@@ -298,7 +303,7 @@ date_default_timezone_set('Asia/Bangkok');
                         if($row4['up_down'] == 'ข้างขึ้น'){
                             echo'   <input type="radio" name="radio" value="ข้างขึ้น" checked>  ขึ้น
                                     <br><br>
-                                    <input type="radio" name="radio" value="ข้าางแรม">  แรม
+                                    <input type="radio" name="radio" value="ข้างแรม">  แรม
                                 ';
                         }else{
                             echo'   <input type="radio" name="radio" value="ข้างขึ้น">  ขึ้น
@@ -313,14 +318,13 @@ date_default_timezone_set('Asia/Bangkok');
                         <div class="col-sm-2" id="day">
                             <label id="head-label-day" class="visually-hidden" for="day">วัน</label>
                             <select class="form-select" id="day" style="width:140px;" name="day">
-                            <option selected><?php echo $row4['day'] ?></option>
-                            <option value="อาทิตย์">อาทิตย์</option>
-                            <option value="จันทร์">จันทร์</option>
-                            <option value="อังคาร">อังคาร</option>
-                            <option value="พุธ">พุธ</option>
-                            <option value="พฤหัสบดี">พฤหัสบดี</option>
-                            <option value="ศุกร์">ศุกร์</option>
-                            <option value="เสาร์">เสาร์</option>
+                                <option value="อาทิตย์" <?php if ($row4['day'] === "อาทิตย์") echo 'selected'; ?>>อาทิตย์</option>
+                                <option value="จันทร์" <?php if ($row4['day'] === "จันทร์") echo 'selected'; ?>>จันทร์</option>
+                                <option value="อังคาร" <?php if ($row4['day'] === "อังคาร") echo 'selected'; ?>>อังคาร</option>
+                                <option value="พุธ" <?php if ($row4['day'] === "พุธ") echo 'selected'; ?>>พุธ</option>
+                                <option value="พฤหัสบดี" <?php if ($row4['day'] === "พฤหัสบดี") echo 'selected'; ?>>พฤหัสบดี</option>
+                                <option value="ศุกร์" <?php if ($row4['day'] === "ศุกร์") echo 'selected'; ?>>ศุกร์</option>
+                                <option value="เสาร์" <?php if ($row4['day'] === "เสาร์") echo 'selected'; ?>>เสาร์</option>
                             </select>
                         </div>
                         <div class="col-sm-2">        
@@ -407,3 +411,4 @@ date_default_timezone_set('Asia/Bangkok');
         </script>
     </body>
 </html>
+<?php include('script.php');?>
