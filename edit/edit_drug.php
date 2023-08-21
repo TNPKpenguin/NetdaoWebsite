@@ -122,7 +122,7 @@
                                                 echo "<td><p class='fw-normal mb-1'>" . $row['amount'] . "</p></td>";
                                                 echo "<td><div class='d-flex align-items-center'><div class='ms-3'><p class='fw-bold mb-1'>" . $row['sum'] . "</p></div></div></td>";
                                                 echo "<td><p class='fw-normal mb-1'>" . $row['note'] . "</p></td>";
-                                                echo "<td><button type='button' class='delete-button' value=".$row['case_id'].",".$row['drug_no']."".">Delete</button></td>";
+                                                echo "<td><button type='button' class='delete-button btn btn-danger' value=".$row['case_id'].",".$row['drug_no']."".">Delete</button></td>";
                                                 echo "</tr>";
                                             }
                                         ?>

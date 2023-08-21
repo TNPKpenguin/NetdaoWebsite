@@ -140,7 +140,7 @@ date_default_timezone_set('Asia/Bangkok');
                             echo "<tr>";
                             echo "<td><div class='d-flex align-items-center'><div class='ms-3'><p class='fw-bold mb-1'>" . $row2['sym_no'] . "</p></div></div></td>";
                             echo "<td><p class='fw-normal mb-1'>" . $row2['sym_name'] . "</p></td>";
-                            echo "<td><button class='delete-button' type='button' onclick='cDel(".$row2['sym_no'].",\"".$_GET['case_id']."\",\"".$_GET['hn']."\");'>Delete</button></td>";
+                            echo "<td><button class='btn btn-danger' type='button' onclick='cDel(".$row2['sym_no'].",\"".$_GET['case_id']."\",\"".$_GET['hn']."\");'>Delete</button></td>";
                             echo "</tr>";
                         }
                         ?>
